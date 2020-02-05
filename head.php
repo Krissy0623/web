@@ -35,3 +35,10 @@ require_once _WEB_PATH . '/function.php';
 $_SESSION['admin'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : false; 
 /*三元運算,真就將$_SESSION['admin']指定給前面的$_SESSION['admin'];
 不真就將false指定給前面的$_SESSION['admin']*/ 
+
+/*為了cookie使用 */
+if(!$_SESSION['admin']){
+  $_COOKIE['token'] = isset($_COOKIE['token']) ? $_COOKIE['token'] : "";  
+  $_COOKIE['name'] = isset($_COOKIE['name']) ? $_COOKIE['name'] : "";  
+  if($_COOKIE['name'] == "admin" and $_COOKIE['token'] == "xxxxxx")$_SESSION['admin'] = true;
+}

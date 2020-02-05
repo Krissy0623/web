@@ -2,7 +2,7 @@
 require_once 'head.php';
 
 /* 過濾變數，設定預設值 */
-$op = system_CleanVars($_REQUEST, 'op', '', 'string'); /*$_REQUEST就是POS,GET都算*/
+$op = system_CleanVars($_REQUEST, 'op', '', 'string'); /*$_REQUEST就是POS,GET,COOKIE都算*/
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
  
 /* 程式流程 */
@@ -40,6 +40,8 @@ $smarty->display('user.tpl');
 /*---- 函數區-----*/
 function logout() {
   $_SESSION['admin']="";
+    setcookie("name", "", time()- 3600 * 24 * 365); 
+  setcookie("token", "", time()- 3600 * 24 * 365); 
 }
 
 function xxx(){
@@ -50,8 +52,17 @@ function login(){
   global $smarty;
   $name="admin";
   $pass="111111";
+  $token="xxxxxx";
+
   if ($name == $_POST['name'] and $pass == $_POST['pass']){
       $_SESSION['admin'] = true;
+      $_POST['remember'] = isset($_POST['remember']) ? $_POST['remember'] : "";
+      
+      if($_POST['remember']){
+        setcookie("name", $name, time()+ 3600 * 24 * 365); 
+        setcookie("token", $token, time()+ 3600 * 24 * 365); 
+      }
+      
       header("location:index.php");
   }else{
     header("location:user.php");
@@ -60,7 +71,6 @@ function login(){
   die();
 }
  
-
 
 function op_list(){
   global $smarty;
