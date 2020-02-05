@@ -30,4 +30,8 @@ require_once _WEB_PATH.'/smarty.php';
 #引入資料庫設定
 // require_once _WEB_PATH.'/sqlConfig.php';
 // #引入設定檔
-// require_once _WEB_PATH . '/function.php';
+require_once _WEB_PATH . '/function.php';
+
+$_SESSION['admin'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : false; 
+/*三元運算,真就將$_SESSION['admin']指定給前面的$_SESSION['admin'];
+不真就將false指定給前面的$_SESSION['admin']*/ 

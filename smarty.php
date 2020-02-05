@@ -26,4 +26,4 @@ $smarty->cache_dir = _WEB_PATH . '/cache/';
 #定義模板URL 
 $smarty->assign("xoImgUrl", _WEB_URL . '/templates/'); 
 $smarty->assign("xoAppUrl", _WEB_URL."/");
-//xoImgUrl是變數
+//使用$smarty->assign來送xoImgUrl這個變數
