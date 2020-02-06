@@ -12,11 +12,19 @@
                     <a href="index.php">
                         <li class="list-group-item">首頁</li>
                     </a>
-                    <a href="user.php?op=logout">
-                        <li class="list-group-item">登出</li>
+                    <a href="user.php?op=logout" class="list-group-item">
+                        <li style="list-style-type: none">登出</li>
                     </a>                           
-                  <li class="list-group-item">Vestibulum at eros</li>
+                	<li class="list-group-item">Vestibulum at eros</li>
+					
+					<li class="list-group-item">
+                    	<a href="index.php" class="btn-block">首頁</a>
+                	</li>	
+                	<li class="list-group-item">
+                    	<a href="user.php?op=logout" class="btn-block">登出</a>
+                	</li>
                 </ul>
+                
               </div>
         </div>
     </div>

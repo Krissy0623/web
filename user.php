@@ -41,7 +41,7 @@ $smarty->display('user.tpl');
 function logout() {
   $_SESSION['admin']="";
     setcookie("name", "", time()- 3600 * 24 * 365); 
-  setcookie("token", "", time()- 3600 * 24 * 365); 
+    setcookie("token", "", time()- 3600 * 24 * 365); 
 }
 
 function xxx(){
