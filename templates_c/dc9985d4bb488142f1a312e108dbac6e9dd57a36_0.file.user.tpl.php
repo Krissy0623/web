@@ -1,28 +1,29 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-05 05:13:04
+/* Smarty version 3.1.34-dev-7, created on 2020-02-07 04:06:39
   from 'D:\PHP\xampp\htdocs\web\templates\user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e3a40d0db7381_96757672',
+  'unifunc' => 'content_5e3cd43f22cbe5_70351505',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dc9985d4bb488142f1a312e108dbac6e9dd57a36' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\user.tpl',
-      1 => 1580875470,
+      1 => 1581044797,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:tpl/admin.tpl' => 1,
-    'file:tpl/login.tpl' => 1,
+    'file:tpl/login_form.tpl' => 1,
+    'file:tpl/reg_form.tpl' => 1,
   ),
 ),false)) {
-function content_5e3a40d0db7381_96757672 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e3cd43f22cbe5_70351505 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -56,12 +57,18 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
     <!-- <h1><?php echo $_smarty_tpl->tpl_vars['op']->value;?>
 </h1> -->
     <?php if ($_SESSION['admin']) {?> <!--有值就進來執行;真是管理員,不真不是管理員-->
-        <?php $_smarty_tpl->_subTemplateRender("file:tpl/admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+        
+      <?php $_smarty_tpl->_subTemplateRender("file:tpl/admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
         <?php } else { ?>
-            <?php $_smarty_tpl->_subTemplateRender("file:tpl/login.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                <?php if ($_smarty_tpl->tpl_vars['op']->value == "login_form") {?>
+          <?php $_smarty_tpl->_subTemplateRender("file:tpl/login_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+        <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "reg_form") {?>
+          <?php $_smarty_tpl->_subTemplateRender("file:tpl/reg_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
         <?php }?>
+    <?php }?>	
  </body>
 </html><?php }
 }

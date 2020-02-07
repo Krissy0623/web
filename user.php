@@ -2,15 +2,21 @@
 require_once 'head.php';
 
 /* 過濾變數，設定預設值 */
-$op = system_CleanVars($_REQUEST, 'op', '', 'string'); /*$_REQUEST就是POS,GET,COOKIE都算*/
+$op = system_CleanVars($_REQUEST, 'op', 'login_form', 'string'); /*$_REQUEST就是POS,GET,COOKIE都算*/
 $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
  
 /* 程式流程 */
 switch ($op){
-  case "xxx" :
-    $msg = xxx();
+  case "reg_form" : //原為op_form
+    $msg = reg_form(); //原為op_form
+    break;
+    // 以下內容改成break;
+    // header("location:index.php");//注意前面不可以有輸出
+    // exit;
+  case "reg" :
+    $msg = reg();
     header("location:index.php");//注意前面不可以有輸出
-    exit;
+    exit;  
 
   case "logout" :
     $msg = logout();
@@ -24,30 +30,56 @@ switch ($op){
 
 
 
-  default:
-    $op = "op_list";
-    op_list();
+  default: //都沒有的時候跑default的login_form
+    $op = "login_form";
+    login_form();
     break;  
 }
  
 /*---- 將變數送至樣版----*/
 $smarty->assign("WEB", $WEB);
-$smarty->assign("op", $op);
+$smarty->assign("op", $op); //送去樣板就會顯示,但要下指令<{$op}>
  
 /*---- 程式結尾-----*/
 $smarty->display('user.tpl');
  
 /*---- 函數區-----*/
+/*=======================
+註冊函式(寫入資料庫)
+=======================*/
+function reg() {
+  global $db; /*要使用請global才可以使用*/
+  #過濾變數 /*外來的變數一定要先過濾！！有打過濾變數,如果輸入資料有特殊字元「單引號」也可以註冊*/
+  $_POST['uname'] = $db->real_escape_string($_POST['uname']);
+  $_POST['pass'] = $db->real_escape_string($_POST['pass']);
+  $_POST['chk_pass'] = $db->real_escape_string($_POST['chk_pass']);
+  $_POST['name'] = $db->real_escape_string($_POST['name']);
+  $_POST['tel'] = $db->real_escape_string($_POST['tel']);
+  $_POST['email'] = $db->real_escape_string($_POST['email']);  
+  #加密處理
+  if($_POST['pass'] != $_POST['chk_pass'])die("密碼不一致");
+  $_POST['pass'] = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+  #寫入語法
+  $sql="INSERT INTO `users` (`uname`, `pass`, `name`, `tel`, `email`)/*INSERT INTO後放的是寫入資料庫名稱,規定要用重音` `包圍*/
+  VALUES ('{$_POST['uname']}', '{$_POST['pass']}', '{$_POST['name']}', '{$_POST['tel']}', '{$_POST['email']}')";/*VALUES後的是值*/
+  #寫入資料庫-送來執行
+  $db->query($sql) or die($db->error. $sql);
+  $uid = $db->insert_id;
+
+  // print_r($uid);/*看有沒有串接*/
+  // die();
+}
+
 function logout() {
   $_SESSION['admin']="";
     setcookie("name", "", time()- 3600 * 24 * 365); 
     setcookie("token", "", time()- 3600 * 24 * 365); 
 }
 
-function xxx(){
+function reg_form(){ //原為op_form
   global $smarty;
- 
 }
+
 function login(){
   global $smarty;
   $name="admin";
@@ -72,7 +104,7 @@ function login(){
 }
  
 
-function op_list(){
+function login_form(){
   global $smarty;
 }
 
@@ -89,7 +121,7 @@ function op_list(){
 //     exit;
   
 //   default:
-//     $op = "op_list";
-//     op_list();
+//     $op = "login_form";
+//     login_form();
 //     break;  
 // }

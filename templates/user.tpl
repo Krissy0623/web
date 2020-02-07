@@ -20,9 +20,15 @@
   <body>
     <!-- <h1><{$op}></h1> -->
     <{if $smarty.session.admin}> <!--有值就進來執行;真是管理員,不真不是管理員-->
-        <{include file="tpl/admin.tpl"}>
+      <{* 管理員 *}>  
+      <{include file="tpl/admin.tpl"}>
         <{else}>
-            <{include file="tpl/login.tpl"}>
+        <{* 訪客 *}>
+        <{if $op=="login_form" }>
+          <{include file="tpl/login_form.tpl"}>
+        <{elseif $op=="reg_form"}>
+          <{include file="tpl/reg_form.tpl"}>
         <{/if}>
+    <{/if}>	
  </body>
 </html>

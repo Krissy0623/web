@@ -16,13 +16,13 @@
                         <li style="list-style-type: none">登出</li>
                     </a>                           
                 	<li class="list-group-item">Vestibulum at eros</li>
-					
-					<li class="list-group-item">
+					<!--老師範例-->
+					<!-- <li class="list-group-item">
                     	<a href="index.php" class="btn-block">首頁</a>
                 	</li>	
                 	<li class="list-group-item">
                     	<a href="user.php?op=logout" class="btn-block">登出</a>
-                	</li>
+                	</li> -->
                 </ul>
                 
               </div>
