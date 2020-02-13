@@ -20,7 +20,8 @@ switch ($op){
 
   case "logout" :
     $msg = logout();
-    header("location:index.php");//注意前面不可以有輸出
+    //(輸入值:轉向頁面,訊息,時間)
+    redirect_header("user.php", '登出成功', 3000);
     exit;  
 
   case "login" :
@@ -44,6 +45,16 @@ $smarty->assign("op", $op); //送去樣板就會顯示,但要下指令<{$op}>
 $smarty->display('user.tpl');
  
 /*---- 函數區-----*/
+/*=======================
+  轉向函數
+=======================*/
+function redirect_header($url = "index.php", $message = '訊息', $time = 3000) {
+  $_SESSION['redirect'] = true; //傳進來是真就轉頁
+  $_SESSION['message'] = $message;
+  $_SESSION['time'] = $time;
+  header("location:{$url}"); //注意前面不可以有輸出
+  exit;
+}
 /*=======================
 註冊函式(寫入資料庫)
 =======================*/
@@ -94,10 +105,11 @@ function login(){
         setcookie("name", $name, time()+ 3600 * 24 * 365); 
         setcookie("token", $token, time()+ 3600 * 24 * 365); 
       }
-      
-      header("location:index.php");
+      // header("location:index.php"); 此行註解,打下方的方法
+      redirect_header("index.php", '登入成功', 3000);
   }else{
-    header("location:user.php");
+    // header("location:user.php");
+    redirect_header("user.php", '登入失敗', 3000);
   }
   print_r($_POST); //也可以使用var_dump($_POST);
   die();

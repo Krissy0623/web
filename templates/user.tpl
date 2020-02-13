@@ -18,16 +18,37 @@
   
   </head>
   <body>
+	<{* sweetalert2 *}>
+	<!-- 你有送轉向訊息我就送這一段 -->
+	<{if $redirect}> 
+		<!--sweetalert2-->
+		<link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
+		<script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
+		<script>
+			/*先跑完onload在跑動元素*/
+			window.onload = function(){
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: "<{$message}>",
+					showConfirmButton: false, //顯示不顯示確認紐
+					timer: '<{$time}>' //顯示秒數後自動關閉
+				})
+			}
+		</script>
+	<{/if}>
+
     <!-- <h1><{$op}></h1> -->
     <{if $smarty.session.admin}> <!--有值就進來執行;真是管理員,不真不是管理員-->
-      <{* 管理員 *}>  
-      <{include file="tpl/admin.tpl"}>
-        <{else}>
+    	<{* 管理員 *}>  
+    	<{include file="tpl/admin.tpl"}>
+    <{else}>
         <{* 訪客 *}>
-        <{if $op=="login_form" }>
-          <{include file="tpl/login_form.tpl"}>
+	
+		<{if $op=="login_form" }>
+        	<{include file="tpl/login_form.tpl"}>
         <{elseif $op=="reg_form"}>
-          <{include file="tpl/reg_form.tpl"}>
+        	<{include file="tpl/reg_form.tpl"}>
         <{/if}>
     <{/if}>	
  </body>

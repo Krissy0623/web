@@ -29,5 +29,53 @@
             您還沒還沒註冊嗎？請 <a href="user.php?op=reg_form">點選此處註冊您的新帳號</a>。
         </div>        
     </form>
+</div>
 
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="border-top mt-3">聯絡我們</h2>
+    </div>
+    
+    <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
+    <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='<{$xoAppUrl}>class/google1/ok.html'}"></iframe>
+    <form  target='returnWin' role="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd4C0EGK97haIGrC5k74NI3YcrpqgRG3QO9m6kJ_buB8W3yKA/formResponse" >
+        <div class="row mt-3">         
+            <!--姓名-->              
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label><span class="title">姓名</span></label>
+                    <span class="text-danger"></span>
+                    <input type="text" class="form-control" name="entry.309241924" id="name" value="">
+                </div>
+            </div>          
+            <!--電話-->              
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label><span class="title">電話</span></label>
+                    <span class="text-danger"></span>
+                    <input type="text" class="form-control" name="entry.1303439956" id="tel" value="">
+                </div>
+            </div>  
+            <!--email-->              
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label><span class="title">email</span></label>
+                    <span class="text-danger"></span>
+                    <input type="text" class="form-control" name="entry.1887980734" id="email" value="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">  
+                <!-- 聯絡事項 -->
+                <div class="form-group mt-3">
+                    <label class="control-label">聯絡事項</label>
+                    <textarea class="form-control" rows="4" name="entry.1926273471" id="note"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="text-center pb-3">
+            <button type="submit" class="btn btn-primary">送出</button>
+        </div>
+    </form>
 </div>

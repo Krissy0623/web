@@ -14,8 +14,16 @@
                     </a>
                     <a href="user.php?op=logout" class="list-group-item">
                         <li style="list-style-type: none">登出</li>
-                    </a>                           
-                	<li class="list-group-item">Vestibulum at eros</li>
+                    </a>
+                    <a href="http://localhost/adminer/adminer.php" class="list-group-item" target="_blank">
+                        <li style="list-style-type: none">資料庫管理</li>
+                    </a>
+                    
+                    <!-- 資料庫管理老師的打法
+                        <li class="list-group-item">
+                        <a href="http://localhost/adminer/adminer.php" class="btn-block" target="blank">資料庫管理</a></li> target="_blank"新開一個分頁
+                    -->
+
 					<!--老師範例-->
 					<!-- <li class="list-group-item">
                     	<a href="index.php" class="btn-block">首頁</a>

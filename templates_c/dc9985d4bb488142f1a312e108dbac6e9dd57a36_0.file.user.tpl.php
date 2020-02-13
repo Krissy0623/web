@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-07 04:06:39
+/* Smarty version 3.1.34-dev-7, created on 2020-02-13 08:28:54
   from 'D:\PHP\xampp\htdocs\web\templates\user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e3cd43f22cbe5_70351505',
+  'unifunc' => 'content_5e44fab63c8690_02796523',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dc9985d4bb488142f1a312e108dbac6e9dd57a36' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\user.tpl',
-      1 => 1581044797,
+      1 => 1581578627,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/reg_form.tpl' => 1,
   ),
 ),false)) {
-function content_5e3cd43f22cbe5_70351505 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e44fab63c8690_02796523 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -54,18 +54,46 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
   
   </head>
   <body>
+		<!-- 你有送轉向訊息我就送這一段 -->
+	<?php if ($_smarty_tpl->tpl_vars['redirect']->value) {?> 
+		<!--sweetalert2-->
+		<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.css">
+		<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
+>
+		<?php echo '<script'; ?>
+>
+			/*先跑完onload在跑動元素*/
+			window.onload = function(){
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: "<?php echo $_smarty_tpl->tpl_vars['message']->value;?>
+",
+					showConfirmButton: false, //顯示不顯示確認紐
+					timer: '<?php echo $_smarty_tpl->tpl_vars['time']->value;?>
+' //顯示秒數後自動關閉
+				})
+			}
+		<?php echo '</script'; ?>
+>
+	<?php }?>
+
     <!-- <h1><?php echo $_smarty_tpl->tpl_vars['op']->value;?>
 </h1> -->
     <?php if ($_SESSION['admin']) {?> <!--有值就進來執行;真是管理員,不真不是管理員-->
-        
-      <?php $_smarty_tpl->_subTemplateRender("file:tpl/admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+    	  
+    	<?php $_smarty_tpl->_subTemplateRender("file:tpl/admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-        <?php } else { ?>
-                <?php if ($_smarty_tpl->tpl_vars['op']->value == "login_form") {?>
-          <?php $_smarty_tpl->_subTemplateRender("file:tpl/login_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+    <?php } else { ?>
+        	
+		<?php if ($_smarty_tpl->tpl_vars['op']->value == "login_form") {?>
+        	<?php $_smarty_tpl->_subTemplateRender("file:tpl/login_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
         <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "reg_form") {?>
-          <?php $_smarty_tpl->_subTemplateRender("file:tpl/reg_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+        	<?php $_smarty_tpl->_subTemplateRender("file:tpl/reg_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
         <?php }?>
     <?php }?>	

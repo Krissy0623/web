@@ -37,8 +37,29 @@ $_SESSION['admin'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : false;
 不真就將false指定給前面的$_SESSION['admin']*/ 
 
 /*為了cookie使用 */
-if(!$_SESSION['admin']){
+if(!$_SESSION['admin']) {
   $_COOKIE['token'] = isset($_COOKIE['token']) ? $_COOKIE['token'] : "";  
   $_COOKIE['name'] = isset($_COOKIE['name']) ? $_COOKIE['name'] : "";  
   if($_COOKIE['name'] == "admin" and $_COOKIE['token'] == "xxxxxx")$_SESSION['admin'] = true;
 }
+
+#轉向用
+// (3)三元運算
+$_SESSION['redirect'] = isset($_SESSION['redirect']) ? $_SESSION['redirect'] : "";
+$_SESSION['message'] = isset($_SESSION['message']) ? $_SESSION['message'] : "";
+$_SESSION['time'] = isset($_SESSION['time']) ? $_SESSION['time'] : "";
+
+// (2)傳到樣板去
+$smarty->assign("redirect", $_SESSION['redirect']); // <{$redirect}>
+$smarty->assign("message", $_SESSION['message']);
+$smarty->assign("time", $_SESSION['time']);
+
+// (1)(練習時,先打註解起來的地方,然後使用smarty->assign)
+// $_SESSION['redirect'] = true; //傳進來是真就轉頁
+// $_SESSION['message'] = $message;
+// $_SESSION['time'] = $time;
+
+// (4)傳完就清掉
+$_SESSION['redirect'] = "";
+$_SESSION['message'] = "";
+$_SESSION['time'] = "";
