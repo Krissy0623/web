@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" style="padding-top: 80px;">
     <h1 class="text-center">註冊表單</h1>
     
     <form action="user.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
@@ -69,7 +69,7 @@
 
 		// });
 		$(function(){
-			$("#myForm").validate({
+			$("#myForm1").validate({
 				submitHandler: function(form) {
 					form.submit(); //form的物件 驗證後送出
 				},

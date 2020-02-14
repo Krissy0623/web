@@ -18,25 +18,8 @@
   
   </head>
   <body>
-	<{* sweetalert2 *}>
-	<!-- 你有送轉向訊息我就送這一段 -->
-	<{if $redirect}> 
-		<!--sweetalert2-->
-		<link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
-		<script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
-		<script>
-			/*先跑完onload在跑動元素*/
-			window.onload = function(){
-				Swal.fire({
-					position: 'center',
-					icon: 'success',
-					title: "<{$message}>",
-					showConfirmButton: false, //顯示不顯示確認紐
-					timer: '<{$time}>' //顯示秒數後自動關閉
-				})
-			}
-		</script>
-	<{/if}>
+	<{* 轉向樣版連結 *}>
+	<{include file="tpl/redirect.tpl"}>
 
     <!-- <h1><{$op}></h1> -->
     <{if $smarty.session.admin}> <!--有值就進來執行;真是管理員,不真不是管理員-->
