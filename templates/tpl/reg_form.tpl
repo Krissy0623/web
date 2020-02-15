@@ -1,7 +1,7 @@
 <div class="container mt-5" style="padding-top: 80px;">
     <h1 class="text-center">註冊表單</h1>
     
-    <form action="user.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
+    <form action="index.php" method="post" id="myForm" class="mb-2" enctype="multipart/form-data">
     <!--傳檔案就是要加enctype="multipart/form-data"(規定)-->
     <!-- <div class="row"> -->
     <div display:flex>         

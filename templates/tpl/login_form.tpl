@@ -7,7 +7,7 @@
     }      
 </style>    
 <div class="container mt-5" style="padding-top: 80px;">
-    <form class="form-signin" action="user.php" method="post">
+    <form class="form-signin" action="index.php" method="post">
         <h1 class="h3 mb-3 font-weight-normal">會員登入</h1>
         <div class="mb-3">
             <label for="name" class="sr-only">帳號</label>

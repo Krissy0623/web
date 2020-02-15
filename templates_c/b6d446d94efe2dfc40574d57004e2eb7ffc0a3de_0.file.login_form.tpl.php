@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-14 09:03:58
+/* Smarty version 3.1.34-dev-7, created on 2020-02-15 02:47:45
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\login_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e46546e01db48_10099513',
+  'unifunc' => 'content_5e474dc16c0238_95247018',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b6d446d94efe2dfc40574d57004e2eb7ffc0a3de' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\login_form.tpl',
-      1 => 1581667434,
+      1 => 1581731259,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e46546e01db48_10099513 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e474dc16c0238_95247018 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
     .form-signin {
         width: 100%;
@@ -30,7 +30,7 @@ function content_5e46546e01db48_10099513 (Smarty_Internal_Template $_smarty_tpl)
     }      
 </style>    
 <div class="container mt-5" style="padding-top: 80px;">
-    <form class="form-signin" action="user.php" method="post">
+    <form class="form-signin" action="index.php" method="post">
         <h1 class="h3 mb-3 font-weight-normal">會員登入</h1>
         <div class="mb-3">
             <label for="name" class="sr-only">帳號</label>
