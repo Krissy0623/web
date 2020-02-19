@@ -22,21 +22,21 @@
         <!--確認密碼-->              
         <div class="col-sm-6, col-md-4">
 			<div class="form-group">
-				<label>確認密碼<span class="text-danger">*</span class="text-danger"></label>
+				<label>確認密碼<span class="text-danger">*</span></label>
 				<input type="password" class="form-control" name="chk_pass" id="chk_pass" value="">
 			</div>
         </div>         
         <!--姓名-->              
         <div class="col-sm-6, col-md-4">
 			<div class="form-group">
-				<label>姓名<span class="text-danger">*</span class="text-danger"></label>
+				<label>姓名<span class="text-danger">*</span></label>
 				<input type="text" class="form-control" name="name" id="name" value="">
 			</div>
         </div>         
         <!--電話-->              
         <div class="col-sm-6, col-md-4">
 			<div class="form-group">
-				<label>電話<span class="text-danger">*</span class="text-danger"></label>
+				<label>電話<span class="text-danger">*</span></label>
 				<input type="text" class="form-control" name="tel" id="tel" value="">
 			</div>
         </div>             
@@ -69,7 +69,7 @@
 
 		// });
 		$(function(){
-			$("#myForm1").validate({
+			$("#myForm").validate({
 				submitHandler: function(form) {
 					form.submit(); //form的物件 驗證後送出
 				},
