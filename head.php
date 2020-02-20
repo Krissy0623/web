@@ -32,15 +32,47 @@ require_once _WEB_PATH.'/sqlConfig.php';
 // #引入設定檔
 require_once _WEB_PATH . '/function.php';
 
-$_SESSION['admin'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : false; 
-/*三元運算,真就將$_SESSION['admin']指定給前面的$_SESSION['admin'];
-不真就將false指定給前面的$_SESSION['admin']*/ 
+//判斷是否為管理員↓ 1=管理員 0=會員 空=訪客
+$_SESSION['user']['kind'] = isset($_SESSION['user']['kind']) ? $_SESSION['user']['kind'] : ""; 
+/*三元運算,真就將$_SESSION['user']['kind']指定給前面的$_SESSION['user']['kind'];
+不真就將""指定給前面的$_SESSION['user']['kind']*/ 
 
 /*為了cookie使用 */
-if(!$_SESSION['admin']) {
+if($_SESSION['user']['kind'] === ""){
   $_COOKIE['token'] = isset($_COOKIE['token']) ? $_COOKIE['token'] : "";  
-  $_COOKIE['name'] = isset($_COOKIE['name']) ? $_COOKIE['name'] : "";  
-  if($_COOKIE['name'] == "admin" and $_COOKIE['token'] == "xxxxxx")$_SESSION['admin'] = true;
+  $_COOKIE['uname'] = isset($_COOKIE['uname']) ? $_COOKIE['uname'] : "";  
+  //過濾
+  $_COOKIE['uname'] = db_filter($_COOKIE['uname'], '');
+  $_COOKIE['token'] = db_filter($_COOKIE['token'], '');
+
+  if($_COOKIE['uname'] && $_COOKIE['token']){
+    $sql="SELECT *
+        FROM `users`
+        WHERE `uname` = '{$_COOKIE['uname']}'
+    ";
+    
+    $result = $db->query($sql); 
+    $row = $result->fetch_assoc(); 
+
+    if($_COOKIE['token'] === $row['token']){
+
+      $row['uname'] = htmlspecialchars($row['uname']); //字串
+      $row['uid'] = (int)$row['uid']; //整數
+      $row['kind'] = (int)$row['kind'];
+      $row['name'] = htmlspecialchars($row['name']);
+      $row['tel'] = htmlspecialchars($row['tel']);
+      $row['email'] = htmlspecialchars($row['email']);
+      $row['pass'] = htmlspecialchars($row['pass']);
+      $row['token'] = htmlspecialchars($row['token']);
+
+      $_SESSION['user']['uid'] = $row['uid'];
+      $_SESSION['user']['uname'] = $row['uname'];
+      $_SESSION['user']['name'] = $row['name'];
+      $_SESSION['user']['tel'] = $row['tel'];
+      $_SESSION['user']['email'] = $row['email'];
+      $_SESSION['user']['kind'] = $row['kind']; 
+    }
+  }    
 }
 
 #轉向用

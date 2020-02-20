@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-15 03:29:27
+/* Smarty version 3.1.34-dev-7, created on 2020-02-20 04:05:03
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\reg_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e4757879e0bc7_95661523',
+  'unifunc' => 'content_5e4df75f90cf77_24824209',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cdfaf6cd8aa3765f8c0c1be5ad5db943508a9463' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\reg_form.tpl',
-      1 => 1581733588,
+      1 => 1582100702,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e4757879e0bc7_95661523 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e4df75f90cf77_24824209 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container mt-5" style="padding-top: 80px;">
     <h1 class="text-center">註冊表單</h1>
     
@@ -45,21 +45,21 @@ function content_5e4757879e0bc7_95661523 (Smarty_Internal_Template $_smarty_tpl)
         <!--確認密碼-->              
         <div class="col-sm-6, col-md-4">
 			<div class="form-group">
-				<label>確認密碼<span class="text-danger">*</span class="text-danger"></label>
+				<label>確認密碼<span class="text-danger">*</span></label>
 				<input type="password" class="form-control" name="chk_pass" id="chk_pass" value="">
 			</div>
         </div>         
         <!--姓名-->              
         <div class="col-sm-6, col-md-4">
 			<div class="form-group">
-				<label>姓名<span class="text-danger">*</span class="text-danger"></label>
+				<label>姓名<span class="text-danger">*</span></label>
 				<input type="text" class="form-control" name="name" id="name" value="">
 			</div>
         </div>         
         <!--電話-->              
         <div class="col-sm-6, col-md-4">
 			<div class="form-group">
-				<label>電話<span class="text-danger">*</span class="text-danger"></label>
+				<label>電話<span class="text-danger">*</span></label>
 				<input type="text" class="form-control" name="tel" id="tel" value="">
 			</div>
         </div>             
@@ -95,7 +95,7 @@ function content_5e4757879e0bc7_95661523 (Smarty_Internal_Template $_smarty_tpl)
 
 		// });
 		$(function(){
-			$("#myForm1").validate({
+			$("#myForm").validate({
 				submitHandler: function(form) {
 					form.submit(); //form的物件 驗證後送出
 				},

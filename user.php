@@ -2,7 +2,7 @@
 require_once 'head.php';
 
 #權限檢查
-if(!$_SESSION['admin'])redirect_header("index.php", '您沒有權限', 3000);
+if($_SESSION['user']['kind'] !== 1)redirect_header("index.php", '您沒有權限', 3000);
 
 /* 過濾變數，設定預設值 */
 $op = system_CleanVars($_REQUEST, 'op', 'op_list', 'string'); /*$_REQUEST就是POS,GET,COOKIE都算*/
@@ -10,10 +10,15 @@ $uid = system_CleanVars($_REQUEST, 'uid', '', 'int');
  
 /* 程式流程 */
 switch ($op){
+  case "op_delete": 
+    $msg = op_delete($uid); 
+    redirect_header("user.php", $msg, 3000);
+    exit;
+
   case "op_update": 
     $msg = op_update($uid); 
     redirect_header("user.php", $msg, 3000);
-    break;
+    exit;
 
   case "op_form": 
     $msg = op_form($uid); 
@@ -41,6 +46,16 @@ $smarty->display('admin.tpl');
 /*=======================
 註冊函式(寫入資料庫)
 =======================*/
+function op_delete($uid){
+  global $db; //$db連到資料庫,並取到該值
+  $sql="DELETE FROM `users` 
+        WHERE `uid` = '{$uid}'
+  ";
+  $db->query($sql) or die($db->error() . $sql);
+  return "會員資料刪除成功";
+}
+
+
 function op_update($uid=""){ //有給值就是編輯;沒有值就是新增
   global $db;
   //下方是用來過濾,變數的過濾

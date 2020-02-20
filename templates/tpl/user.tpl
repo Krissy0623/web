@@ -20,6 +20,7 @@
                 <td><{if $row.kind}><i class="fas fa-user-check"></i><{/if}></td>
                 <td>
                     <a href="user.php?op=op_form&uid=<{$row.uid}>"><i class="fas fa-edit"></i></a> <!--可以編輯選擇到的項目-->
+                    <a href="javascript:void(0)" onclick="op_delete(<{$row.uid}>);"><i class="far fa-trash-alt"></i></a>
                 </td>
             </tr>
             <{foreachelse}>
@@ -29,6 +30,28 @@
             <{/foreach}>
         </tbody>
     </table>
+    
+    <!--sweetalert2-->
+    <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
+    <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
+    <script>
+        function op_delete(uid){ //這裡是javascript所以不用加錢字符號
+                Swal.fire({
+                    title: '你確定嗎?',
+                    text: "你將無法還原",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '是的,刪除它!',
+                    cancelButtonText: '取消'
+                    }).then((result) => {
+                    if (result.value) {
+                        document.location.href="user.php?op=op_delete&uid="+uid;
+                    }
+                })    
+        }
+    </script>
 <{/if}>
 
 <{if $op=="op_form"}>

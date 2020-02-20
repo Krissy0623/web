@@ -27,16 +27,21 @@
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="index.php?op=contact_form"><{$a4}></a>
               </li>
-              <{if $smarty.session.admin}> 
+              <{if $smarty.session.user.kind === 1}> 
               <{* 管理員 *}>
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="user.php">管理員</a>
+                  <a class="nav-link js-scroll-trigger" href="user.php">後台</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="index.php?op=logout">登出</a>
                 </li>
-              <{else}>
+              <{* 會員 *}>  
+              <{elseif $smarty.session.user.kind === 0}>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="index.php?op=logout">登出</a>
+              </li>
               <{* 未登入 *}>
+              <{else}>
                 <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="index.php?op=login_form">登入</a>
                 </li>

@@ -74,34 +74,84 @@ function reg_form(){
 
 }
 function login(){
-  global $smarty;
-  $name="admin";
-  $pass="111111";
-  $token="xxxxxx";
+  global $db;
+  //資料庫的過濾方式↓ 註冊時有使用過此過濾法;'帳號'、'密碼'有填,所以一定要輸入不然會跳錯
+  $_POST['uname'] = db_filter($_POST['uname'], '帳號');
+  $_POST['pass'] = db_filter($_POST['pass'], '密碼');
+  //到adminer/adminer.php「取得語法」,到user表裡→到uname=隨便選擇一筆查詢copy下來,如下
+  $sql="SELECT *
+        FROM `users`
+        WHERE `uname` = '{$_POST['uname']}'
+  ";
+  //$result把資料送去執行,撈出來之後,再用變數$row去接他
+  $result = $db->query($sql) or die($db->error() . $sql); //resul執行
+  $row = $result->fetch_assoc() or redirect_header("index.php?op=login_form", '帳號輸入錯誤', 3000); //用來接
+  
+  //字串與整數的過濾
+  $row['uname'] = htmlspecialchars($row['uname']); //字串
+  $row['uid'] = (int)$row['uid']; //整數
+  $row['kind'] = (int)$row['kind'];
+  $row['name'] = htmlspecialchars($row['name']);
+  $row['tel'] = htmlspecialchars($row['tel']);
+  $row['email'] = htmlspecialchars($row['email']);
+  $row['pass'] = htmlspecialchars($row['pass']); //user.php的op_list有做過,但這兩個要自己加進來-1
+  $row['token'] = htmlspecialchars($row['token']); //-2
 
-  if ($name == $_POST['name'] and $pass == $_POST['pass']){
-      $_SESSION['admin'] = true;
-      $_POST['remember'] = isset($_POST['remember']) ? $_POST['remember'] : "";
+  if (password_verify($_POST['pass'], $row['pass'])){ //帳號輸入進來的,跟裡面撈到的值(前者為明碼,後者為加密過的碼)
+    /*---驗證登入成功就顯示為1---
+    echo $_POST['pass']. "<br>";
+    echo $row['pass']. "<br>";
+    die("1");
+    -------------------------*/
+    //登入成功
+    $_SESSION['user']['uid'] = $row['uid'];
+    $_SESSION['user']['uname'] = $row['uname'];
+    $_SESSION['user']['name'] = $row['name'];
+    $_SESSION['user']['tel'] = $row['tel'];
+    $_SESSION['user']['email'] = $row['email'];
+    $_SESSION['user']['kind'] = $row['kind']; 
+
+    //三元運算,變數存在就指過去左邊,變數不存在就指過去左邊  
+    $_POST['remember'] = isset($_POST['remember']) ? $_POST['remember'] : "";
       
-      if($_POST['remember']){
-        setcookie("name", $name, time()+ 3600 * 24 * 365); 
-        setcookie("token", $token, time()+ 3600 * 24 * 365); 
-      }
-      // header("location:index.php"); 此行註解,打下方的方法
-      redirect_header("index.php", '登入成功', 3000);
-  }else{
-    // header("location:user.php");
+    if($_POST['remember']){
+      setcookie("uname", $row['uname'], time()+ 3600 * 24 * 365); 
+      setcookie("token", $row['token'], time()+ 3600 * 24 * 365); 
+    }
+    redirect_header("index.php", '登入成功', 3000);
+    // header("location:index.php"); 此行註解,打下方的方法
+  }else{    
+    /*---驗證登入失敗就顯示為0---
+    echo $_POST['pass']. "<br>";
+    echo $row['pass']. "<br>";
+    die("0");
+    -------------------------*/    
+    $_SESSION['user']['uid'] = "";
+    $_SESSION['user']['uname'] = "";
+    $_SESSION['user']['name'] = "";
+    $_SESSION['user']['tel'] = "";
+    $_SESSION['user']['email'] = "";
+    $_SESSION['user']['kind'] = "";
+
     redirect_header("index.php?op=login_form", '登入失敗', 3000);
   }
-  print_r($_POST); //也可以使用var_dump($_POST);
-  die();
+  // print_r($_POST);die(); 也可以使用var_dump($_POST);
+  
 }
 
-function logout() {
-    $_SESSION['admin']="";
-      setcookie("name", "", time()- 3600 * 24 * 365); 
-      setcookie("token", "", time()- 3600 * 24 * 365); 
+function logout(){    
+  $_SESSION['user']['uid'] = "";
+  $_SESSION['user']['uname'] = "";
+  $_SESSION['user']['name'] = "";
+  $_SESSION['user']['tel'] = "";
+  $_SESSION['user']['email'] = "";
+  $_SESSION['user']['kind'] = "";
+
+  setcookie("uname", "", time()- 3600 * 24 * 365); 
+  setcookie("token", "", time()- 3600 * 24 * 365);
+  // print_r($_SESSION);die(); 
   }
+
 function reg() {
   global $db; /*要使用請global才可以使用*/
   #過濾變數 /*外來的變數一定要先過濾！！有打過濾變數,如果輸入資料有特殊字元「單引號」也可以註冊*/
