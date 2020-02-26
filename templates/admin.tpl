@@ -28,7 +28,10 @@
             <div class="col-sm-9">
 
                 <{if $WEB.file_name == "user.php"}>
-                <{include file="tpl/user.tpl"}>
+                    <{include file="tpl/user.tpl"}>
+                <!--此處多一個商品管理的樣板-->
+                <{elseif $WEB.file_name == "prod.php"}>  
+                    <{include file="tpl/prod.tpl"}>
                 <{/if}>
 
             </div>
@@ -43,6 +46,12 @@
                         </a>
                         <a href="index.php?op=logout" class="list-group-item">
                             <li style="list-style-type: none">登出</li>
+                        </a>
+                        <a href="user.php" class="list-group-item">
+                            <li style="list-style-type: none">會員管理</li>
+                        </a>
+                        <a href="prod.php" class="list-group-item">
+                            <li style="list-style-type: none">商品管理</li>
                         </a>
                         <a href="http://localhost/adminer/adminer.php" class="list-group-item" target="_blank"> <!--target="_blank"新開一個分頁-->
                             <li style="list-style-type: none">資料庫管理</li>

@@ -69,6 +69,7 @@ if (!function_exists("getVisitorsAddr")) {
  
 ########################
 #  建立目錄
+#  這屬多人編輯, 如果目錄不在就建起來;目錄在就不建
 ########################
 if (!function_exists("mk_dir")) {
   function mk_dir($dir = "") {
