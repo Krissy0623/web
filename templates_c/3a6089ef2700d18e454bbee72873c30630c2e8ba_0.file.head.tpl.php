@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-20 07:59:31
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 11:33:11
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e4e2e53ab0948_78595525',
+  'unifunc' => 'content_5e573877745fb5_34492050',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3a6089ef2700d18e454bbee72873c30630c2e8ba' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\head.tpl',
-      1 => 1582181969,
+      1 => 1582774384,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e4e2e53ab0948_78595525 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e573877745fb5_34492050 (Smarty_Internal_Template $_smarty_tpl) {
 ?>  <style>
       #mainNav {
         background-color: rgba(255,72,0,.5);
@@ -29,7 +29,8 @@ function content_5e4e2e53ab0948_78595525 (Smarty_Internal_Template $_smarty_tpl)
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
-          <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+          <a class="navbar-brand js-scroll-trigger" href="#page-top"><?php echo $_smarty_tpl->tpl_vars['WEB']->value['web_title'];?>
+</a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

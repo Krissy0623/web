@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 03:52:17
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 13:48:12
   from 'D:\PHP\xampp\htdocs\web\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e55dd61033294_55465862',
+  'unifunc' => 'content_5e57581c6619e6_89126101',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '15644c69c6b1afd6a0e5590f31d425bc000679f9' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\admin.tpl',
-      1 => 1582684891,
+      1 => 1582782486,
       2 => 'file',
     ),
   ),
@@ -21,9 +21,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/redirect.tpl' => 1,
     'file:tpl/user.tpl' => 1,
     'file:tpl/prod.tpl' => 1,
+    'file:tpl/kind.tpl' => 1,
   ),
 ),false)) {
-function content_5e55dd61033294_55465862 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e57581c6619e6_89126101 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -39,7 +40,8 @@ bootstrap/bootstrap.min.css"> <!--斷線CSS-->
     <link href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
 vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>會員管理</title>
+    <title><?php echo $_smarty_tpl->tpl_vars['WEB']->value['web_title'];?>
+</title>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <?php echo '<script'; ?>
@@ -59,7 +61,8 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
 <body>
 	    <?php $_smarty_tpl->_subTemplateRender("file:tpl/redirect.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-    <h1 class="text-center mt-3">管理員樣板</h1>
+    <h1 class="text-center mt-3"><?php echo $_smarty_tpl->tpl_vars['WEB']->value['web_title'];?>
+</h1>
     <div class="container">
         <div class="row">
             <div class="col-sm-9">
@@ -70,6 +73,9 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
                 <!--此處多一個商品管理的樣板-->
                 <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "prod.php") {?>  
                     <?php $_smarty_tpl->_subTemplateRender("file:tpl/prod.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+                <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "kind.php") {?>  
+                    <?php $_smarty_tpl->_subTemplateRender("file:tpl/kind.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 <?php }?>
 
@@ -91,6 +97,9 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
                         </a>
                         <a href="prod.php" class="list-group-item">
                             <li style="list-style-type: none">商品管理</li>
+                        </a>
+                        <a href="kind.php" class="list-group-item">
+                            <li style="list-style-type: none">類別管理</li>
                         </a>
                         <a href="http://localhost/adminer/adminer.php" class="list-group-item" target="_blank"> <!--target="_blank"新開一個分頁-->
                             <li style="list-style-type: none">資料庫管理</li>

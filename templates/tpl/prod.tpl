@@ -2,6 +2,7 @@
     <table class="table table table-bordered table-striped table-hover table-sm">
         <thead>
             <tr>
+                <th scope="col" style="width:85px">圖片</th>
                 <th scope="col">標題</th>
                 <th scope="col">分類</th>
                 <th scope="col" class="text-right">價格</th>
@@ -16,12 +17,13 @@
         <tbody>
             <{foreach $rows as $row}>  <{* <{foreach $來源 as $別名}> *}>
             <tr>
-                <td><{$row.title}></td> <{* <{$別名.索引}> *}>
-                <td><{$row.kind_sn}></td>
-                <td class="text-right"><{$row.price}></td>
-                <td class="text-center"><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
-                <td class="text-center"><{$row.counter}></td>
-                <td class="text-center">
+                <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
+                <td class="align-middle"><{$row.title}></td> <{* <{$別名.索引}> *}>
+                <td class="align-middle"><{$row.kind_sn}></td>
+                <td class="text-right align-middle"><{$row.price}></td>
+                <td class="text-center align-middle"><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
+                <td class="text-center align-middle"><{$row.counter}></td>
+                <td class="text-center align-middle">
                     <a href="prod.php?op=op_form&sn=<{$row.sn}>"><i class="fas fa-edit"></i></a> <!--可以編輯選擇到的項目-->
                     <a href="javascript:void(0)" onclick="op_delete(<{$row.sn}>);"><i class="far fa-trash-alt"></i></a>
                 </td>
@@ -50,7 +52,7 @@
                     cancelButtonText: '取消'
                     }).then((result) => {
                     if (result.value) {
-                        document.location.href="user.php?op=op_delete&sn="+sn;
+                        document.location.href="prod.php?op=op_delete&sn="+sn;
                     }
                 })    
         }
@@ -74,11 +76,15 @@
             </div>         
             <!--分類-->              
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label>分類</label>
-                    <input type="text" class="form-control" name="kind_sn" id="kind_sn" value="<{$row.kind_sn}>">
+                    <div class="form-group">
+                        <label>分類</label>
+                        <select name="kind_sn" id="kind_sn" class="form-control">
+                            <{foreach $row.kind_sn_options as $option}>
+                                <option value="<{$option.sn}>" <{if $option.sn == $row.kind_sn}>selected<{/if}>><{$option.title}></option>
+                            <{/foreach}>
+                        </select>
+                    </div>
                 </div>
-            </div>
             <!--商品狀態-->
             <div class="col-sm-4">
                 <div class="form-group">

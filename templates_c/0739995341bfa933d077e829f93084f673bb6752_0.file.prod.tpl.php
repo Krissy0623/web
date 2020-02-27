@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-26 16:47:21
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 16:24:44
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e563099e7a115_75215277',
+  'unifunc' => 'content_5e577ccc3176e7_86851617',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0739995341bfa933d077e829f93084f673bb6752' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\prod.tpl',
-      1 => 1582706161,
+      1 => 1582791877,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e563099e7a115_75215277 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e577ccc3176e7_86851617 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table table-bordered table-striped table-hover table-sm">
         <thead>
             <tr>
+                <th scope="col" style="width:85px">圖片</th>
                 <th scope="col">標題</th>
                 <th scope="col">分類</th>
                 <th scope="col" class="text-right">價格</th>
@@ -42,15 +43,18 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 ?>              <tr>
-                <td><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-</td>                 <td><?php echo $_smarty_tpl->tpl_vars['row']->value['kind_sn'];?>
+                <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+" width=80></td>
+                <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</td>                 <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['kind_sn'];?>
 </td>
-                <td class="text-right"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+                <td class="text-right align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 </td>
-                <td class="text-center"><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
-                <td class="text-center"><?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
+                <td class="text-center align-middle"><?php if ($_smarty_tpl->tpl_vars['row']->value['enable']) {?><i class="fas fa-check"></i><?php }?></td>
+                <td class="text-center align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
 </td>
-                <td class="text-center">
+                <td class="text-center align-middle">
                     <a href="prod.php?op=op_form&sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 "><i class="fas fa-edit"></i></a> <!--可以編輯選擇到的項目-->
                     <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
@@ -91,7 +95,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                     cancelButtonText: '取消'
                     }).then((result) => {
                     if (result.value) {
-                        document.location.href="user.php?op=op_delete&sn="+sn;
+                        document.location.href="prod.php?op=op_delete&sn="+sn;
                     }
                 })    
         }
@@ -117,12 +121,24 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
             </div>         
             <!--分類-->              
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label>分類</label>
-                    <input type="text" class="form-control" name="kind_sn" id="kind_sn" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['kind_sn'];?>
-">
+                    <div class="form-group">
+                        <label>分類</label>
+                        <select name="kind_sn" id="kind_sn" class="form-control">
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value['kind_sn_options'], 'option');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['option']->value) {
+?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['option']->value['sn'];?>
+" <?php if ($_smarty_tpl->tpl_vars['option']->value['sn'] == $_smarty_tpl->tpl_vars['row']->value['kind_sn']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['option']->value['title'];?>
+</option>
+                            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                        </select>
+                    </div>
                 </div>
-            </div>
             <!--商品狀態-->
             <div class="col-sm-4">
                 <div class="form-group">

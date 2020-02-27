@@ -11,7 +11,7 @@
     <!-- Font Awesome Icons -->
     <link href="<{$xoImgUrl}>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>會員管理</title>
+    <title><{$WEB.web_title}></title>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="<{$xoImgUrl}>bootstrap/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
 <body>
 	<{* 轉向樣版連結 *}>
     <{include file="tpl/redirect.tpl"}>
-    <h1 class="text-center mt-3">管理員樣板</h1>
+    <h1 class="text-center mt-3"><{$WEB.web_title}></h1>
     <div class="container">
         <div class="row">
             <div class="col-sm-9">
@@ -32,6 +32,8 @@
                 <!--此處多一個商品管理的樣板-->
                 <{elseif $WEB.file_name == "prod.php"}>  
                     <{include file="tpl/prod.tpl"}>
+                <{elseif $WEB.file_name == "kind.php"}>  
+                    <{include file="tpl/kind.tpl"}>
                 <{/if}>
 
             </div>
@@ -52,6 +54,9 @@
                         </a>
                         <a href="prod.php" class="list-group-item">
                             <li style="list-style-type: none">商品管理</li>
+                        </a>
+                        <a href="kind.php" class="list-group-item">
+                            <li style="list-style-type: none">類別管理</li>
                         </a>
                         <a href="http://localhost/adminer/adminer.php" class="list-group-item" target="_blank"> <!--target="_blank"新開一個分頁-->
                             <li style="list-style-type: none">資料庫管理</li>

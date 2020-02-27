@@ -12,7 +12,7 @@ $sn = system_CleanVars($_REQUEST, 'sn', '', 'int');
 switch ($op){
   	case "op_delete": 
 		$msg = op_delete($sn); 
-		redirect_header("user.php", $msg, 3000);
+		redirect_header("prod.php", $msg, 3000);
 		exit;
 
 	case "op_insert": 
@@ -20,14 +20,14 @@ switch ($op){
 		redirect_header("prod.php", $msg, 3000);
 		exit;
 
+	case "op_update": 
+		$msg = op_insert($sn); 
+		redirect_header("prod.php", $msg, 3000);
+		exit;
+
 	case "op_form": 
 		$msg = op_form($sn); 
 		break;
-  
-  // case "reg" :
-  //   $msg = reg();
-  //   header("location:index.php");//注意前面不可以有輸出
-  //   exit;
 
   	default: //都沒有的時候跑default的login_form
 		$op = "op_list"; //login_form
@@ -43,18 +43,38 @@ $smarty->assign("op", $op); //送去樣板就會顯示,但要下指令<{$op}>
 $smarty->display('admin.tpl');
  
 /*---- 函數區-----*/
-/*=======================
-註冊函式(寫入資料庫)
-=======================*/
 function op_delete($sn){
 	global $db; //$db連到資料庫,並取到該值
+	#刪除舊圖
+	# 1.刪除實體檔案
+	# 2.刪除files資料表
+	delFilesByKindColsnSort("prod",$sn,1);		
+	
+	#刪除商品資料表
 	$sql="DELETE FROM `prods` 
 			WHERE `sn` = '{$sn}'
 	";
 	$db->query($sql) or die($db->error() . $sql);
-	return "會員資料刪除成功";
+	return "商品資料刪除成功";
 }
-
+/*==========================
+  用$kind,$col_sn,$sort
+  刪除 圖片資料
+==========================*/
+function delFilesByKindColsnSort($kind,$col_sn,$sort){
+	global $db;
+	# 1.刪除實體檔案
+	$file_name = getFilesByKindColsnSort($kind,$col_sn,$sort,false);
+	if($file_name){
+	  unlink($file_name);
+	}
+	# 2.刪除files資料表	
+	$sql="DELETE FROM `files`
+		  WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
+	";
+	$db->query($sql) or die($db->error() . $sql);	
+	return;	 
+  }
 
 function op_insert($sn=""){ //有給值就是編輯;沒有值就是新增
 	global $db;
@@ -65,13 +85,28 @@ function op_insert($sn=""){ //有給值就是編輯;沒有值就是新增
 	$_POST['content'] = db_filter($_POST['content'], '');
 	$_POST['price'] = db_filter($_POST['price'], '');
 	$_POST['enable'] = db_filter($_POST['enable'], '');
+
+	$_POST['date'] = db_filter($_POST['date'], '');
 	$_POST['date'] = strtotime($_POST['date']);
+
 	$_POST['sort'] = db_filter($_POST['sort'], '');
 	$_POST['counter'] = db_filter($_POST['counter'], '');
 	//過濾到此↑
 
 	if($sn){
-		
+		$sql="UPDATE  `prods` SET
+					  `kind_sn` = '{$_POST['kind_sn']}',
+					  `title` = '{$_POST['title']}',
+					  `content` = '{$_POST['content']}',
+					  `price` = '{$_POST['price']}',
+					  `enable` = '{$_POST['enable']}',
+					  `date` = '{$_POST['date']}',
+					  `sort` = '{$_POST['sort']}',
+					  `counter` = '{$_POST['counter']}'
+					  WHERE `sn` = '{$_POST['sn']}'    
+	";	
+		$db->query($sql) or die($db->error() . $sql);
+		$msg = "商品資料更新成功";
 	}else{
 		$sql= "INSERT INTO `prods` 
 		(`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`)
@@ -85,9 +120,14 @@ function op_insert($sn=""){ //有給值就是編輯;沒有值就是新增
 	}
 
 	if($_FILES['prod']['name']){
+		$kind = "prod";
+		#刪除舊圖
+		# 1.刪除實體檔案
+		# 2.刪除files資料表
+		delFilesByKindColsnSort($kind,$sn,1);
+
 		if ($_FILES['prod']['error'] === UPLOAD_ERR_OK){
 			
-			$kind = "prod";
 			$sub_dir = "/".$kind;
 			$sort = 1;
 			#過濾變數
@@ -131,12 +171,15 @@ function op_insert($sn=""){ //有給值就是編輯;沒有值就是新增
 	return $msg;
 }
 
+/*========================================
+  用kind col_sn sort 取得圖片資料
+========================================*/ 
 function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
-	global $db; //抓資料庫
+	global $db; 
 	$sql = "SELECT *
 			FROM `files`
 			WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
-    ";     
+    ";
 	$result = $db->query($sql) or die($db->error() . $sql);
 	$row = $result->fetch_assoc();
 	if($url){
@@ -147,34 +190,68 @@ function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
 	return $file_name;
 }
 
-function op_form($sn=""){ //有給值就是編輯;沒有值就是新增
-  global $smarty,$db;
-
-  if($sn){
-    $sql="SELECT *
+/*==================
+用sn取得商品檔資料
+==================*/
+function getProdsBySn($sn){
+	global $db;
+	$sql="SELECT *
           FROM `prods`
           WHERE `sn` = '{$sn}'
     "; //die($sql);
   
     $result = $db->query($sql) or die($db->error() . $sql); /*result門票*/
-    $row = $result->fetch_assoc();
-	$row['op'] = "op_update";
-    $row['prod'] = getFilesByKindColsnSort("prod",$sn);
-    // print_r($row);die();
-  }else{
-	$row['op'] = "op_insert";
-	$row['prod'] = "";
+	$row = $result->fetch_assoc();
+	$row['prod'] = getFilesByKindColsnSort("prod",$sn);
+	return $row;
+}
+
+/*==================
+取得商品檔類別選項
+==================*/
+function getProdsOptions($kind){
+	global $db;
+	$sql="SELECT `sn`,`title`
+		  FROM `kinds`
+		  WHERE `kind` = '{$kind}' AND `enable` = '1'
+		  ORDER BY `sort`  
+	";
+	$result = $db->query($sql) or die($db->error() . $sql);
+	$rows=[];//array();
+	while($row = $result->fetch_assoc()){    
+	  $row['sn'] = (int)$row['sn'];//分類
+	  $row['title'] = htmlspecialchars($row['title']);//標題
+	  $rows[] = $row;
+	}
+	return $rows;
   }
+
+function op_form($sn=""){ //有給值就是編輯;沒有值就是新增
+	global $smarty,$db;
+
+	if($sn){
+		$row = getProdsBySn($sn);
+		$row['op'] = "op_update";
+	}else{
+		$row['op'] = "op_insert";	
+	}
 
   $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
   $row['kind_sn'] = isset($row['kind_sn']) ? $row['kind_sn'] : "1";
+  $row['kind_sn_options'] = getProdsOptions("prod");
+
   $row['title'] = isset($row['title']) ? $row['title'] : "";
   $row['content'] = isset($row['content']) ? $row['content'] : "";
   $row['price'] = isset($row['price']) ? $row['price'] : "";
   $row['enable'] = isset($row['enable']) ? $row['enable'] : "1";
-  $row['date'] = isset($row['date']) ? $row['date'] : date("Y-m-d H:i:s",strtotime("now"));
+
+  $row['date'] = isset($row['date']) ? $row['date'] : strtotime("now");
+  $row['date'] = date("Y-m-d H:i:s",$row['date']);
+
   $row['sort'] = isset($row['sort']) ? $row['sort'] : "";
   $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
+
+  $row['prod'] = isset($row['prod']) ? $row['prod'] : "";
 
   $smarty->assign("row",$row);  
 }
@@ -190,30 +267,16 @@ function op_list(){
   $rows=[]; //array();
   while($row = $result->fetch_assoc()){ /*不知道有幾筆用while;$result->fetch_row()一筆一筆去撈*;用$row去接撈出來的資料*/
     //加入資料過濾的語法
-    $row['title'] = htmlspecialchars($row['title']); //標題
-    $row['kind_sn'] = (int)$row['kind_sn']; //分類
-    $row['price'] = (int)$row['price']; //價格
-    $row['enable'] = (int)$row['enable']; //狀態
-    $row['counter'] = (int)$row['counter']; //計數
+    $row['sn'] = (int)$row['sn'];//分類
+    $row['title'] = htmlspecialchars($row['title']);//標題
+    $row['kind_sn'] = (int)$row['kind_sn'];//分類
+    $row['price'] = (int)$row['price'];//價格
+    $row['enable'] = (int)$row['enable'];//狀態
+    $row['counter'] = (int)$row['counter'];//計數
+    $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']);  
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);  
-  // print_r();die();
+  
 }
 
-/* 程式流程 */
-// switch ($op){
-//   case "op_form" :
-//     $msg = op_form();
-//     break;
-  
-//   case "yyy" :
-//     $msg = yyy();
-//     header("location:index.php");
-//     exit;
-  
-//   default:
-//     $op = "login_form";
-//     login_form();
-//     break;  
-// }

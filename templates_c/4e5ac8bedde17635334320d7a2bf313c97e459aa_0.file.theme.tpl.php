@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-15 02:45:17
+/* Smarty version 3.1.34-dev-7, created on 2020-02-27 11:32:19
   from 'D:\PHP\xampp\htdocs\web\templates\theme.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e474d2d91f394_98772831',
+  'unifunc' => 'content_5e573843b48802_51082791',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4e5ac8bedde17635334320d7a2bf313c97e459aa' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\theme.tpl',
-      1 => 1581731112,
+      1 => 1582774330,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5e474d2d91f394_98772831 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e573843b48802_51082791 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +40,8 @@ function content_5e474d2d91f394_98772831 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Creative - Start Bootstrap Theme</title>
+  <title><?php echo $_smarty_tpl->tpl_vars['WEB']->value['web_title'];?>
+</title>
 
   <!-- Font Awesome Icons -->
   <link href="<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
