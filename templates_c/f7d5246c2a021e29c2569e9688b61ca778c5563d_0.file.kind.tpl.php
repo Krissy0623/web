@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 15:37:55
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 10:45:41
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\kind.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5771d3a3dc81_38884652',
+  'unifunc' => 'content_5e5c73559c6549_03649319',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f7d5246c2a021e29c2569e9688b61ca778c5563d' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\kind.tpl',
-      1 => 1582788949,
+      1 => 1583117132,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5771d3a3dc81_38884652 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5c73559c6549_03649319 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -28,7 +28,8 @@ if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
             <th scope="col">標題</th>
             <th scope="col" class="text-center">狀態</th>
             <th scope="col" class="text-center">
-                <a href="?op=op_form&kind={$kind}"><i class="fas fa-plus-square"></i>新增</a>
+                <a href="?op=op_form&kind=<?php echo $_smarty_tpl->tpl_vars['kind']->value;?>
+"><i class="fas fa-plus-square"></i>新增</a>
             </th>
         </tr>
         </thead>

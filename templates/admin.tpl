@@ -34,6 +34,10 @@
                     <{include file="tpl/prod.tpl"}>
                 <{elseif $WEB.file_name == "kind.php"}>  
                     <{include file="tpl/kind.tpl"}>
+                <{elseif $WEB.file_name == "menu.php"}>  
+                    <{include file="tpl/menu.tpl"}>
+                <{elseif $WEB.file_name == "slide.php"}>  
+                    <{include file="tpl/slide.tpl"}>
                 <{/if}>
 
             </div>
@@ -57,6 +61,12 @@
                         </a>
                         <a href="kind.php" class="list-group-item">
                             <li style="list-style-type: none">類別管理</li>
+                        </a>
+                        <a href="menu.php" class="list-group-item">
+                            <li style="list-style-type: none">選單管理</li>
+                        </a>
+                        <a href="slide.php" class="list-group-item">
+                            <li style="list-style-type: none">輪播圖管理</li>
                         </a>
                         <a href="http://localhost/adminer/adminer.php" class="list-group-item" target="_blank"> <!--target="_blank"新開一個分頁-->
                             <li style="list-style-type: none">資料庫管理</li>

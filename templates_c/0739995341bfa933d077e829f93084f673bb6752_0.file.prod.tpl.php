@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 16:24:44
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 16:32:18
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e577ccc3176e7_86851617',
+  'unifunc' => 'content_5e5cc492dc9ff6_23739602',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0739995341bfa933d077e829f93084f673bb6752' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\prod.tpl',
-      1 => 1582791877,
+      1 => 1583137934,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e577ccc3176e7_86851617 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5cc492dc9ff6_23739602 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table table-bordered table-striped table-hover table-sm">
         <thead>
@@ -153,7 +153,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>價格</label>
-                    <input type="text" class="form-control" name="price" id="price" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+                    <input type="text" class="form-control text-right" name="price" id="price" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 ">
                 </div>
             </div>         
@@ -169,7 +169,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>排序</label>
-                    <input type="text" class="form-control" name="sort" id="sort" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sort'];?>
+                    <input type="text" class="form-control text-right" name="sort" id="sort" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['sort'];?>
 ">
                 </div>
             </div>             
@@ -177,7 +177,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>計數</label>
-                    <input type="text" class="form-control" name="counter" id="counter" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
+                    <input type="text" class="form-control text-right" name="counter" id="counter" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['counter'];?>
 ">
                 </div>
             </div>
@@ -209,6 +209,20 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
             </div>
         </div>
+        <!-- ckeditor -->
+        <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/ckeditor/ckeditor.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+>
+            CKEDITOR.replace('content',{
+                    height:500,
+                    contentsCss: ['<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
+css/creative.css'] //引入前台樣板css
+                });
+        <?php echo '</script'; ?>
+>
 
         <div class="text-center pb-2">
             <input type="hidden" name="op" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['op'];?>

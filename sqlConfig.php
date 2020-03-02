@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['HTTP_HOST'] == "127.0.0.1" or "localhost"){ //近端的
+if($_SERVER['HTTP_HOST'] == "127.0.0.1" or $_SERVER['HTTP_HOST'] == "localhost"){ //近端的
   #資料庫伺服器
   $db_host = "localhost";
   #資料庫使用者帳號
@@ -12,11 +12,11 @@ if($_SERVER['HTTP_HOST'] == "127.0.0.1" or "localhost"){ //近端的
   #資料庫伺服器
   $db_host = "localhost";
   #資料庫使用者帳號
-  $db_user = "root";
+  $db_user = "dj2ugm_lerkatao";
   #資料庫使用者密碼
-  $db_password = "800623";
+  $db_password = "BQHrPVA(EyIb";
   #資料庫名稱
-  $db_name = "web";
+  $db_name = "dj2ugm_lerkatao";
 }
 
 

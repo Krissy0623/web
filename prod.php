@@ -57,24 +57,7 @@ function op_delete($sn){
 	$db->query($sql) or die($db->error() . $sql);
 	return "商品資料刪除成功";
 }
-/*==========================
-  用$kind,$col_sn,$sort
-  刪除 圖片資料
-==========================*/
-function delFilesByKindColsnSort($kind,$col_sn,$sort){
-	global $db;
-	# 1.刪除實體檔案
-	$file_name = getFilesByKindColsnSort($kind,$col_sn,$sort,false);
-	if($file_name){
-	  unlink($file_name);
-	}
-	# 2.刪除files資料表	
-	$sql="DELETE FROM `files`
-		  WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
-	";
-	$db->query($sql) or die($db->error() . $sql);	
-	return;	 
-  }
+
 
 function op_insert($sn=""){ //有給值就是編輯;沒有值就是新增
 	global $db;
@@ -171,24 +154,7 @@ function op_insert($sn=""){ //有給值就是編輯;沒有值就是新增
 	return $msg;
 }
 
-/*========================================
-  用kind col_sn sort 取得圖片資料
-========================================*/ 
-function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
-	global $db; 
-	$sql = "SELECT *
-			FROM `files`
-			WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
-    ";
-	$result = $db->query($sql) or die($db->error() . $sql);
-	$row = $result->fetch_assoc();
-	if($url){
-		$file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
-	}else{
-		$file_name = _WEB_PATH . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
-	}
-	return $file_name;
-}
+
 
 /*==================
 用sn取得商品檔資料
@@ -226,6 +192,21 @@ function getProdsOptions($kind){
 	return $rows;
   }
 
+/*===========================
+   取得商品的數量
+===========================*/
+function getProdsMaxSort(){
+	global $db;
+	$sql = "SELECT count(*)+1 as count
+			FROM `prods`
+	";//die($sql);
+  
+	$result = $db->query($sql) or die($db->error() . $sql);
+	$row = $result->fetch_assoc();
+	return $row['count'];
+  }
+
+
 function op_form($sn=""){ //有給值就是編輯;沒有值就是新增
 	global $smarty,$db;
 
@@ -235,7 +216,7 @@ function op_form($sn=""){ //有給值就是編輯;沒有值就是新增
 	}else{
 		$row['op'] = "op_insert";	
 	}
-
+//為了把變數送到樣板去,例如:<{$row,title}>,確保不管更新或新增都有值
   $row['sn'] = isset($row['sn']) ? $row['sn'] : "";
   $row['kind_sn'] = isset($row['kind_sn']) ? $row['kind_sn'] : "1";
   $row['kind_sn_options'] = getProdsOptions("prod");
@@ -248,7 +229,7 @@ function op_form($sn=""){ //有給值就是編輯;沒有值就是新增
   $row['date'] = isset($row['date']) ? $row['date'] : strtotime("now");
   $row['date'] = date("Y-m-d H:i:s",$row['date']);
 
-  $row['sort'] = isset($row['sort']) ? $row['sort'] : "";
+  $row['sort'] = isset($row['sort']) ? $row['sort'] : getProdsMaxSort();
   $row['counter'] = isset($row['counter']) ? $row['counter'] : "";
 
   $row['prod'] = isset($row['prod']) ? $row['prod'] : "";

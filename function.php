@@ -118,3 +118,40 @@ function redirect_header($url = "index.php", $message = '訊息', $time = 3000) 
   header("location:{$url}");//注意前面不可以有輸出
   exit;
 }
+
+/*========================================
+  用kind col_sn sort 取得圖片資料
+========================================*/ 
+function getFilesByKindColsnSort($kind,$col_sn,$sort=1,$url=true){
+	global $db; 
+	$sql = "SELECT *
+			FROM `files`
+			WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
+    ";
+	$result = $db->query($sql) or die($db->error() . $sql);
+	$row = $result->fetch_assoc();
+	if($url){
+		$file_name = _WEB_URL . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
+	}else{
+		$file_name = _WEB_PATH . "/uploads" . $row['sub_dir'] . "/" . $row['name'];
+	}
+	return $file_name;
+}
+
+/*==========================
+  用$kind,$col_sn,$sort 取得圖片資料
+==========================*/
+function delFilesByKindColsnSort($kind,$col_sn,$sort){
+	global $db;
+	# 1.刪除實體檔案
+	$file_name = getFilesByKindColsnSort($kind,$col_sn,$sort,false);
+	if($file_name){
+	  unlink($file_name);
+	}
+	# 2.刪除files資料表	
+	$sql="DELETE FROM `files`
+		  WHERE `kind` = '{$kind}' AND `col_sn` = '{$col_sn}' AND `sort` = '{$sort}'
+	";
+	$db->query($sql) or die($db->error() . $sql);	
+	return;	 
+  }

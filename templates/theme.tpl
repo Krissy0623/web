@@ -21,7 +21,7 @@
   <link href="<{$xoImgUrl}>vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
   <!-- Theme CSS - Includes Bootstrap -->
-  <link href="<{$xoImgUrl}>css/creative.min.css" rel="stylesheet">
+  <link href="<{$xoImgUrl}>css/creative.css" rel="stylesheet">
   <{* 把head_js.tpl引進來 *}>
   <{include file="tpl/head_js.tpl"}>
 
@@ -54,6 +54,8 @@
   <{* 把footer.tpl引進來 *}>
   <{include file="tpl/footer.tpl"}>
 
+<!-- Custom scripts for this template -->
+<script src="<{$xoImgUrl}>js/creative.min.js"></script>
 </body>
 
 </html>

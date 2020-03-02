@@ -40,7 +40,7 @@ CREATE TABLE `kinds` (
     PRIMARY KEY (`sn`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='類別資料表';
 
---上傳檔案資料表
+-- 上傳檔案資料表
 CREATE TABLE `files` (
     `sn` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'files_sn',
     `kind` varchar(255) NOT NULL DEFAULT '' COMMENT '分類',

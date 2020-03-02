@@ -1,8 +1,9 @@
-  <style>
+  <!-- <style>
+      納入css檔9620行
       #mainNav {
         background-color: rgba(255,72,0,.5);
       }
-  </style>
+  </style> -->
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
@@ -12,10 +13,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.php#about"><{$a0}></a>
-              </li>
-              <li class="nav-item">
+              <{foreach $mainMenus as $mainMenu}>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="<{$mainMenu.url}>" <{if $mainMenu.target == 1}>target="_blank" <{/if}>><{$mainMenu.title}></a>
+                </li>
+              <{/foreach}>
+              <!-- <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="index.php#services"><{$a1}></a>
               </li>
               <li class="nav-item">
@@ -26,7 +29,7 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="index.php?op=contact_form"><{$a4}></a>
-              </li>
+              </li> -->
               <{if $smarty.session.user.kind === 1}> 
               <{* 管理員 *}>
                 <li class="nav-item">

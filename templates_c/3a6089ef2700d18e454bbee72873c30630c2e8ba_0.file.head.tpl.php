@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-02-27 11:33:11
+/* Smarty version 3.1.34-dev-7, created on 2020-03-02 13:38:33
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\head.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e573877745fb5_34492050',
+  'unifunc' => 'content_5e5c9bd93ab339_18805720',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3a6089ef2700d18e454bbee72873c30630c2e8ba' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\head.tpl',
-      1 => 1582774384,
+      1 => 1583126926,
       2 => 'file',
     ),
   ),
@@ -20,12 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e573877745fb5_34492050 (Smarty_Internal_Template $_smarty_tpl) {
-?>  <style>
+function content_5e5c9bd93ab339_18805720 (Smarty_Internal_Template $_smarty_tpl) {
+?>  <!-- <style>
+      納入css檔9620行
       #mainNav {
         background-color: rgba(255,72,0,.5);
       }
-  </style>
+  </style> -->
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
@@ -36,11 +37,21 @@ function content_5e573877745fb5_34492050 (Smarty_Internal_Template $_smarty_tpl)
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.php#about"><?php echo $_smarty_tpl->tpl_vars['a0']->value;?>
+              <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['mainMenus']->value, 'mainMenu');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['mainMenu']->value) {
+?>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="<?php echo $_smarty_tpl->tpl_vars['mainMenu']->value['url'];?>
+" <?php if ($_smarty_tpl->tpl_vars['mainMenu']->value['target'] == 1) {?>target="_blank" <?php }?>><?php echo $_smarty_tpl->tpl_vars['mainMenu']->value['title'];?>
 </a>
-              </li>
-              <li class="nav-item">
+                </li>
+              <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+              <!-- <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="index.php#services"><?php echo $_smarty_tpl->tpl_vars['a1']->value;?>
 </a>
               </li>
@@ -55,7 +66,7 @@ function content_5e573877745fb5_34492050 (Smarty_Internal_Template $_smarty_tpl)
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="index.php?op=contact_form"><?php echo $_smarty_tpl->tpl_vars['a4']->value;?>
 </a>
-              </li>
+              </li> -->
               <?php if ($_SESSION['user']['kind'] === 1) {?> 
                               <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="user.php">後台</a>

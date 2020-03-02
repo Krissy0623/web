@@ -99,7 +99,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>價格</label>
-                    <input type="text" class="form-control" name="price" id="price" value="<{$row.price}>">
+                    <input type="text" class="form-control text-right" name="price" id="price" value="<{$row.price}>">
                 </div>
             </div>         
             <!--日期-->              
@@ -113,14 +113,14 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>排序</label>
-                    <input type="text" class="form-control" name="sort" id="sort" value="<{$row.sort}>">
+                    <input type="text" class="form-control text-right" name="sort" id="sort" value="<{$row.sort}>">
                 </div>
             </div>             
             <!--計數-->              
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>計數</label>
-                    <input type="text" class="form-control" name="counter" id="counter" value="<{$row.counter}>">
+                    <input type="text" class="form-control text-right" name="counter" id="counter" value="<{$row.counter}>">
                 </div>
             </div>
             <!--圖片上傳-->              
@@ -147,6 +147,14 @@
                 </div>
             </div>
         </div>
+        <!-- ckeditor -->
+        <script src="<{$xoAppUrl}>class/ckeditor/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('content',{
+                    height:500,
+                    contentsCss: ['<{$xoImgUrl}>css/creative.css'] //引入前台樣板css
+                });
+        </script>
 
         <div class="text-center pb-2">
             <input type="hidden" name="op" value="<{$row.op}>"> <!--$_POST['op給他一個']="叫做reg-未來要做的動作"-->
