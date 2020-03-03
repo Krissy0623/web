@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 16:32:18
+/* Smarty version 3.1.34-dev-7, created on 2020-03-03 09:56:50
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5cc492dc9ff6_23739602',
+  'unifunc' => 'content_5e5db962084590_59760409',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0739995341bfa933d077e829f93084f673bb6752' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\prod.tpl',
-      1 => 1583137934,
+      1 => 1583200557,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5cc492dc9ff6_23739602 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5db962084590_59760409 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table table-bordered table-striped table-hover table-sm">
         <thead>
@@ -217,10 +217,13 @@ class/ckeditor/ckeditor.js"><?php echo '</script'; ?>
         <?php echo '<script'; ?>
 >
             CKEDITOR.replace('content',{
-                    height:500,
-                    contentsCss: ['<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
-css/creative.css'] //引入前台樣板css
-                });
+                height:500,//高度
+                contentsCss: ['<?php echo $_smarty_tpl->tpl_vars['xoImgUrl']->value;?>
+css/creative.css'],//前台樣板css
+                removeDialogTabs: 'image:Link',//取消連結 //link:target;link:advanced;image:advanced
+                filebrowserBrowseUrl: '<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/elfinder.php?type=image'//呼叫elfinder.php
+            });
         <?php echo '</script'; ?>
 >
 

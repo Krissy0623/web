@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 11:35:56
+/* Smarty version 3.1.34-dev-7, created on 2020-03-03 10:51:08
   from 'D:\PHP\xampp\htdocs\web\templates\theme.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c7f1cb91be9_58247981',
+  'unifunc' => 'content_5e5dc61c2ea972_60472193',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4e5ac8bedde17635334320d7a2bf313c97e459aa' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\theme.tpl',
-      1 => 1583120148,
+      1 => 1583203758,
       2 => 'file',
     ),
   ),
@@ -21,15 +21,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/head_js.tpl' => 1,
     'file:tpl/redirect.tpl' => 1,
     'file:tpl/head.tpl' => 1,
-    'file:tpl/contact_form.tpl' => 1,
-    'file:tpl/ok.tpl' => 1,
-    'file:tpl/login_form.tpl' => 1,
-    'file:tpl/reg_form.tpl' => 1,
-    'file:tpl/body.tpl' => 1,
+    'file:tpl/index.tpl' => 1,
     'file:tpl/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5e5c7f1cb91be9_58247981 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5dc61c2ea972_60472193 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -70,22 +66,10 @@ css/creative.css" rel="stylesheet">
     <?php $_smarty_tpl->_subTemplateRender("file:tpl/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
-  <?php if ($_smarty_tpl->tpl_vars['op']->value == "contact_form") {?>
-    
-    <?php $_smarty_tpl->_subTemplateRender("file:tpl/contact_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-  <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "ok") {?>
-    <?php $_smarty_tpl->_subTemplateRender("file:tpl/ok.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-    <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "login_form") {?>
-    <?php $_smarty_tpl->_subTemplateRender("file:tpl/login_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-    <?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "reg_form") {?>
-    <?php $_smarty_tpl->_subTemplateRender("file:tpl/reg_form.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-
-    <?php } else { ?>
-        <?php $_smarty_tpl->_subTemplateRender("file:tpl/body.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+  
+  
+  <?php if ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "index.php") {?>
+  <?php $_smarty_tpl->_subTemplateRender("file:tpl/index.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
   <?php }?>
 

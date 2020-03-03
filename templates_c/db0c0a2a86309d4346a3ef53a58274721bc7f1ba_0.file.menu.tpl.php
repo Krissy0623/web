@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-02 11:26:14
+/* Smarty version 3.1.34-dev-7, created on 2020-03-03 11:09:15
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\menu.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5c7cd6ea6ce0_09507545',
+  'unifunc' => 'content_5e5dca5b733723_54370873',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'db0c0a2a86309d4346a3ef53a58274721bc7f1ba' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\menu.tpl',
-      1 => 1583119424,
+      1 => 1583204943,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,18 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5c7cd6ea6ce0_09507545 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5dca5b733723_54370873 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
+
+    <div class="row mb-2">
+        <div class="cols-sm-4">
+            <select name="kind" id="kind" class="form-control" onchange="location.href='?kind='+this.value">
+                <option value="mainMenu" selected="">主選單</option>
+                <option value="cartMenu">購物車選單</option>
+            </select>
+        </div>
+    </div>
+
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
         <tr> 
