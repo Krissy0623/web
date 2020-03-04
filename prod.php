@@ -154,44 +154,6 @@ function op_insert($sn=""){ //有給值就是編輯;沒有值就是新增
 	return $msg;
 }
 
-
-
-/*==================
-用sn取得商品檔資料
-==================*/
-function getProdsBySn($sn){
-	global $db;
-	$sql="SELECT *
-          FROM `prods`
-          WHERE `sn` = '{$sn}'
-    "; //die($sql);
-  
-    $result = $db->query($sql) or die($db->error() . $sql); /*result門票*/
-	$row = $result->fetch_assoc();
-	$row['prod'] = getFilesByKindColsnSort("prod",$sn);
-	return $row;
-}
-
-/*==================
-取得商品檔類別選項
-==================*/
-function getProdsOptions($kind){
-	global $db;
-	$sql="SELECT `sn`,`title`
-		  FROM `kinds`
-		  WHERE `kind` = '{$kind}' AND `enable` = '1'
-		  ORDER BY `sort`  
-	";
-	$result = $db->query($sql) or die($db->error() . $sql);
-	$rows=[];//array();
-	while($row = $result->fetch_assoc()){    
-	  $row['sn'] = (int)$row['sn'];//分類
-	  $row['title'] = htmlspecialchars($row['title']);//標題
-	  $rows[] = $row;
-	}
-	return $rows;
-  }
-
 /*===========================
    取得商品的數量
 ===========================*/
@@ -240,10 +202,21 @@ function op_form($sn=""){ //有給值就是編輯;沒有值就是新增
 function op_list(){
   global $smarty,$db;
 
-  $sql = "SELECT * /*選擇所有欄位*/
-          FROM `prods` /*從prods抓 */
+  $sql = "SELECT a.*,b.title as kinds_title /*選擇所有欄位*/
+          FROM `prods` as a /*從prods抓 */
+		  LEFT JOIN `kinds` as b on a.kind_sn=b.sn /*連接兩個資料夾, 以a資料夾title的為主*/
+		  ORDER BY a.`date` desc
   "; 
-  //`kind_sn`, `title`, `content`, `price`, `enable`, `date`, `sort`, `counter`
+	#---分頁套件(原始$sql 不要設 limit)
+	include_once _WEB_PATH."/class/PageBar/PageBar.php";
+	$pageCount = 10;
+	$PageBar = getPageBar($db, $sql, $pageCount, 10); //全部十筆;超過10頁只會顯示10頁,剩下的會顯示查看更多
+	$sql     = $PageBar['sql'];
+	$total   = $PageBar['total'];
+	$bar     = ($total > $pageCount) ? $PageBar['bar'] :"";
+	$smarty->assign("bar",$bar);  
+	#---分頁套件(end)
+
   $result = $db->query($sql) or die($db->error() . $sql);/*result門票*/
   $rows=[]; //array();
   while($row = $result->fetch_assoc()){ /*不知道有幾筆用while;$result->fetch_row()一筆一筆去撈*;用$row去接撈出來的資料*/
@@ -254,7 +227,8 @@ function op_list(){
     $row['price'] = (int)$row['price'];//價格
     $row['enable'] = (int)$row['enable'];//狀態
     $row['counter'] = (int)$row['counter'];//計數
-    $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']);  
+    $row['prod'] = getFilesByKindColsnSort("prod",$row['sn']);
+    $row['kinds_title'] = htmlspecialchars($row['kinds_title']);//標題  
     $rows[] = $row;
   }
   $smarty->assign("rows",$rows);  

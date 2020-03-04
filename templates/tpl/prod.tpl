@@ -19,7 +19,7 @@
             <tr>
                 <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
                 <td class="align-middle"><{$row.title}></td> <{* <{$別名.索引}> *}>
-                <td class="align-middle"><{$row.kind_sn}></td>
+                <td class="align-middle"><{$row.kinds_title}></td>
                 <td class="text-right align-middle"><{$row.price}></td>
                 <td class="text-center align-middle"><{if $row.enable}><i class="fas fa-check"></i><{/if}></td>
                 <td class="text-center align-middle"><{$row.counter}></td>
@@ -35,7 +35,7 @@
             <{/foreach}>
         </tbody>
     </table>
-    
+    <{$bar}>
     <!--sweetalert2-->
     <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
     <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>

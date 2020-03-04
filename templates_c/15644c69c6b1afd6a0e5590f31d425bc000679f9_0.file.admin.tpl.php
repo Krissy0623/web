@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-03 10:47:51
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 14:59:26
   from 'D:\PHP\xampp\htdocs\web\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5dc557093e63_60763821',
+  'unifunc' => 'content_5e5f51ce7452b0_94031620',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '15644c69c6b1afd6a0e5590f31d425bc000679f9' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\admin.tpl',
-      1 => 1583203663,
+      1 => 1583305162,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/slide.tpl' => 1,
   ),
 ),false)) {
-function content_5e5dc557093e63_60763821 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5f51ce7452b0_94031620 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -99,6 +99,9 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
                         </a>
                         <a href="index.php?op=logout" class="list-group-item">
                             <li style="list-style-type: none">登出</li>
+                        </a>
+                        <a href="cart.php" class="list-group-item">
+                            <li style="list-style-type: none">購物車</li>
                         </a>
                         <a href="user.php" class="list-group-item">
                             <li style="list-style-type: none">會員管理</li>

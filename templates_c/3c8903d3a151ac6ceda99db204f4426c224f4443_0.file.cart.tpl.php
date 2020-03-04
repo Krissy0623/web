@@ -1,4 +1,27 @@
-<{if $op == "op_list"}>
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 16:46:53
+  from 'D:\PHP\xampp\htdocs\web\templates\tpl\cart.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_5e5f6afd1bdf90_24971649',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '3c8903d3a151ac6ceda99db204f4426c224f4443' => 
+    array (
+      0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\cart.tpl',
+      1 => 1583311596,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5e5f6afd1bdf90_24971649 (Smarty_Internal_Template $_smarty_tpl) {
+if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
   <!-- Page Content -->
   <div class="container" style="margin-top: 110px;">
 
@@ -8,33 +31,51 @@
     </h1>
 
     <div class="row">
-      <{foreach $rows as $row}>
+      <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['rows']->value, 'row');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+?>
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
           <div class="card h-100">
-            <img class="card-img-top" src="<{$row.prod}>" alt="<{$row.title}>">
+            <img class="card-img-top" src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+">
             <div class="card-body">
               <div class="card-title">
-                <{$row.title}>： <{$row.price}> 元
+                <?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+： <?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+ 元
               </div>
               <div class="mt-2">
-                <a href="#" class="btn btn-primary btn-sm" onclick="add_cart(<{$row.sn}>);">加入購物車</a>
+                <a href="#" class="btn btn-primary btn-sm" onclick="add_cart(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
+);">加入購物車</a>
               </div>
             </div>
           </div>
         </div>
 
-      <{/foreach}>      
+      <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>      
     </div>
     <!-- /.row -->
-    <{$bar}>
+    <?php echo $_smarty_tpl->tpl_vars['bar']->value;?>
+
 
   </div>
   <!-- /.container -->
   
   <!-- sweetalert2 -->
-  <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
-  <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
-  <script>
+  <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.css">
+  <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
     function add_cart(sn){
       Swal.fire({
         title: '加入購物車？',
@@ -51,10 +92,11 @@
         }
       })
     }
-</script>
-<{elseif  $op == "Portfolio"}>
-<{/if}>
-<{if $op == "order_form"}>
+<?php echo '</script'; ?>
+>
+<?php } elseif ($_smarty_tpl->tpl_vars['op']->value == "Portfolio") {
+}
+if ($_smarty_tpl->tpl_vars['op']->value == "order_form") {?>
   <div class="container mt-5" style="margin-top: 100px!important;>
     <h1 class="text-center">商品訂單</h1>
     <form  role="form" action="order_insert" method="post" id="myForm" >        
@@ -63,21 +105,24 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label><span class="title">姓名</span><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" id="name" value="<{$row.name}>">
+                    <input type="text" class="form-control" name="name" id="name" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['name'];?>
+">
                 </div>
             </div>
             <!--電話-->              
             <div class="col-sm-3">
                 <div class="form-group">
                     <label><span class="title">電話</span><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="tel" id="tel" value="<{$row.tel}>">
+                    <input type="text" class="form-control" name="tel" id="tel" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['tel'];?>
+">
                 </div>
             </div>
             <!--email-->              
             <div class="col-sm-3">
                 <div class="form-group">
                     <label><span class="title">email</span><span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="email" id="email" value="<{$row.email}>">
+                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $_smarty_tpl->tpl_vars['row']->value['email'];?>
+">
                 </div>
             </div>
                     
@@ -86,9 +131,18 @@
               <div class="form-group">
                   <label>配送方式</label>
                   <select name="kind_sn" id="kind_sn" class="form-control">
-                    <{foreach $row.kind_sn_options as $option}>
-                      <option value="<{$option.sn}>" <{if $option.sn == $row.kind_sn}>selected<{/if}>><{$option.title}></option>
-                    <{/foreach}>
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['row']->value['kind_sn_options'], 'option');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['option']->value) {
+?>
+                      <option value="<?php echo $_smarty_tpl->tpl_vars['option']->value['sn'];?>
+" <?php if ($_smarty_tpl->tpl_vars['option']->value['sn'] == $_smarty_tpl->tpl_vars['row']->value['kind_sn']) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['option']->value['title'];?>
+</option>
+                    <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                   </select>
               </div>
             </div>
@@ -116,19 +170,32 @@
                 </tr>
             </thead>
             <tbody>
-                <{foreach $smarty.session.cart as $sn => $row}>
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_SESSION['cart'], 'row', false, 'sn');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sn']->value => $_smarty_tpl->tpl_vars['row']->value) {
+?>
                 <tr>
-                    <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
-                    <td class="align-middle"><{$row.title}></td> <{* <{$別名.索引}> *}>
-                    <td class="text-right align-middle"><{$row.price}></td>
-                    <td class="text-center align-middle"><{$row.amount}></td>
+                    <td><img src="<?php echo $_smarty_tpl->tpl_vars['row']->value['prod'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+" width=80></td>
+                    <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</td>                     <td class="text-right align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
+</td>
+                    <td class="text-center align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['amount'];?>
+</td>
                     <td class="text-center align-middle"></td>
                 </tr>
-                <{foreachelse}>
+                <?php
+}
+} else {
+?>
                     <tr>
                         <td colspan=6>目前您還沒有選購</td>
                     </tr>
-                <{/foreach}>
+                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <tr>
                     <td colspan=4 class="text-right">合計</td>
                     <td class="text-right" id="Total"></td>
@@ -137,9 +204,14 @@
         </table>
 
         <!--sweetalert2-->
-        <link rel="stylesheet" href="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.css">
-        <script src="<{$xoAppUrl}>class/sweetalert2/sweetalert2.min.js"></script>
-        <script>
+        <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.css">
+        <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
+class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+>
             function op_delete(sn){ //這裡是javascript所以不用加錢字符號
                     Swal.fire({
                         title: '你確定嗎?',
@@ -156,7 +228,8 @@
                         }
                     })    
             }
-        </script>
+        <?php echo '</script'; ?>
+>
 
         <div class="text-center pb-3">
             <button type="submit" class="btn btn-primary">送出</button>
@@ -164,14 +237,17 @@
     </form>
   </div>
   <!-- 表單驗證 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+  <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"><?php echo '</script'; ?>
+>
   <!-- 調用方法 -->
   <style>
   .error{
     color:red;
   }
   </style>
-  <script>
+  <?php echo '<script'; ?>
+>
   $(function(){
     $("#myForm").validate({
     submitHandler: function(form) {
@@ -201,5 +277,8 @@
     }
     });
   });
-  </script>
-<{/if}>
+  <?php echo '</script'; ?>
+>
+<?php }
+}
+}

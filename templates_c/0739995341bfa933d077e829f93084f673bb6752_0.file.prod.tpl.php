@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-03 09:56:50
+/* Smarty version 3.1.34-dev-7, created on 2020-03-04 11:35:40
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\prod.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5db962084590_59760409',
+  'unifunc' => 'content_5e5f220c42d338_71882599',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0739995341bfa933d077e829f93084f673bb6752' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\prod.tpl',
-      1 => 1583200557,
+      1 => 1583292937,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e5db962084590_59760409 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e5f220c42d338_71882599 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table table-bordered table-striped table-hover table-sm">
         <thead>
@@ -47,7 +47,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 " alt="<?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 " width=80></td>
                 <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-</td>                 <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['kind_sn'];?>
+</td>                 <td class="align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['kinds_title'];?>
 </td>
                 <td class="text-right align-middle"><?php echo $_smarty_tpl->tpl_vars['row']->value['price'];?>
 </td>
@@ -73,7 +73,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </tbody>
     </table>
-    
+    <?php echo $_smarty_tpl->tpl_vars['bar']->value;?>
+
     <!--sweetalert2-->
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['xoAppUrl']->value;?>
 class/sweetalert2/sweetalert2.min.css">

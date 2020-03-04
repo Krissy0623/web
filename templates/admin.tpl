@@ -53,6 +53,9 @@
                         <a href="index.php?op=logout" class="list-group-item">
                             <li style="list-style-type: none">登出</li>
                         </a>
+                        <a href="cart.php" class="list-group-item">
+                            <li style="list-style-type: none">購物車</li>
+                        </a>
                         <a href="user.php" class="list-group-item">
                             <li style="list-style-type: none">會員管理</li>
                         </a>
