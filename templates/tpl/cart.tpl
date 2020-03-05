@@ -57,7 +57,7 @@
 <{if $op == "order_form"}>
   <div class="container mt-5" style="margin-top: 100px!important;>
     <h1 class="text-center">商品訂單</h1>
-    <form  role="form" action="order_insert" method="post" id="myForm" >        
+    <form  role="form" action="cart.php" method="post" id="myForm" >        
         <div class="row">
             <!--姓名-->              
             <div class="col-sm-3">
@@ -109,10 +109,10 @@
             <thead>
                 <tr>
                     <th scope="col" style="width:85px">圖片</th>
-                    <th scope="col">商品名稱</th>
-                    <th scope="col" class="text-right">價格</th>
-                    <th scope="col" class="text-center">數量</th>
-                    <th scope="col" class="text-center">小計</th>
+                    <th scope="col" class="text-center">商品名稱</th>
+                    <th scope="col" class="text-right" style="width: 120px;">價格</th>
+                    <th scope="col" class="text-center" style="width: 120px;">數量</th>
+                    <th scope="col" class="text-right" style="width: 120px;">小計</th>
                 </tr>
             </thead>
             <tbody>
@@ -120,9 +120,11 @@
                 <tr>
                     <td><img src="<{$row.prod}>" alt="<{$row.title}>" width=80></td>
                     <td class="align-middle"><{$row.title}></td> <{* <{$別名.索引}> *}>
-                    <td class="text-right align-middle"><{$row.price}></td>
-                    <td class="text-center align-middle"><{$row.amount}></td>
-                    <td class="text-center align-middle"></td>
+                    <td class="text-right align-middle price"><{$row.price}></td>
+                    <td class="text-center align-middle">
+                      <input type="number" class="form-control amount text-right" name="amount[<{$row.sn}>]" id="amount" value="<{$row.amount}>" min="0" onchange="calTotal()">
+                    </td>
+                    <td class="text-right align-middle total"></td>
                 </tr>
                 <{foreachelse}>
                     <tr>
@@ -159,7 +161,9 @@
         </script>
 
         <div class="text-center pb-3">
-            <button type="submit" class="btn btn-primary">送出</button>
+          <input type="hidden" name="op" value="<{$row.op}>" >
+          <input type="hidden" name="uid" value="<{$row.uid}>" >
+          <button type="submit" class="btn btn-primary">送出</button>
         </div>
     </form>
   </div>
@@ -171,6 +175,7 @@
     color:red;
   }
   </style>
+
   <script>
   $(function(){
     $("#myForm").validate({
@@ -201,5 +206,30 @@
     }
     });
   });
+  </script>
+
+  <!-- 計算合計金額 -->
+  <script>
+    calTotal();
+    //合計金額
+    function calTotal(){
+      // document.getElementsByClassName("title")[0].innerText //取標題
+      // document.getElementsByClassName("amount")[0].value //取數量
+      var prices = document.getElementsByClassName("price");
+      var amounts = document.getElementsByClassName("amount");
+      var Total = 0;
+      for(var i=0; i < prices.length; i++){
+          var price = document.getElementsByClassName("price")[i].innerText;
+          var amount = document.getElementsByClassName("amount")[i].value;
+          var price = parseInt(price);
+          Total += (amount * price); //合計
+          document.getElementsByClassName("total")[i].innerText = amount * price; //小計
+      }
+      if(Total === 0){
+          document.getElementById("Total").innerText = "";
+      }else{
+          document.getElementById("Total").innerText = Total;
+      }
+    }
   </script>
 <{/if}>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-04 14:59:26
+/* Smarty version 3.1.34-dev-7, created on 2020-03-05 16:23:28
   from 'D:\PHP\xampp\htdocs\web\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e5f51ce7452b0_94031620',
+  'unifunc' => 'content_5e60b700d5bd49_81603156',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '15644c69c6b1afd6a0e5590f31d425bc000679f9' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\admin.tpl',
-      1 => 1583305162,
+      1 => 1583396592,
       2 => 'file',
     ),
   ),
@@ -24,9 +24,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/kind.tpl' => 1,
     'file:tpl/menu.tpl' => 1,
     'file:tpl/slide.tpl' => 1,
+    'file:tpl/contact.tpl' => 1,
   ),
 ),false)) {
-function content_5e5f51ce7452b0_94031620 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e60b700d5bd49_81603156 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -85,6 +86,9 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
                 <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "slide.php") {?>  
                     <?php $_smarty_tpl->_subTemplateRender("file:tpl/slide.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+                <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "contact.php") {?>  
+                    <?php $_smarty_tpl->_subTemplateRender("file:tpl/contact.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
                 <?php }?>
 
             </div>
@@ -117,6 +121,10 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
                         </a>
                         <a href="slide.php" class="list-group-item">
                             <li style="list-style-type: none">輪播圖管理</li>
+                        </a>
+                        <a href="contact.php" class="list-group-item">
+                            <li style="list-style-type: none">聯絡我們管理</li>
+                        </a>
                         </a>
                         <a href="http://localhost/adminer/adminer.php" class="list-group-item" target="_blank"> <!--target="_blank"新開一個分頁-->
                             <li style="list-style-type: none">資料庫管理</li>

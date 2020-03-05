@@ -38,6 +38,8 @@
                     <{include file="tpl/menu.tpl"}>
                 <{elseif $WEB.file_name == "slide.php"}>  
                     <{include file="tpl/slide.tpl"}>
+                <{elseif $WEB.file_name == "contact.php"}>  
+                    <{include file="tpl/contact.tpl"}>
                 <{/if}>
 
             </div>
@@ -70,6 +72,10 @@
                         </a>
                         <a href="slide.php" class="list-group-item">
                             <li style="list-style-type: none">輪播圖管理</li>
+                        </a>
+                        <a href="contact.php" class="list-group-item">
+                            <li style="list-style-type: none">聯絡我們管理</li>
+                        </a>
                         </a>
                         <a href="http://localhost/adminer/adminer.php" class="list-group-item" target="_blank"> <!--target="_blank"新開一個分頁-->
                             <li style="list-style-type: none">資料庫管理</li>

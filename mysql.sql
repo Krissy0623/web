@@ -69,6 +69,7 @@ CREATE TABLE `orders_main` (
   `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '會員編號',
   `date` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '訂單日期',
   `total` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '總計',
+  `kind_sn` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT '配送方式',
   PRIMARY KEY (`sn`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='訂單主檔';
 
@@ -83,3 +84,14 @@ CREATE TABLE `orders` (
   `sort` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`sn`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='訂單明細檔';
+
+-- 聯絡我們資料表
+CREATE TABLE `contacts` (
+    `sn` int(10) unsigned NOT NULL auto_increment COMMENT 'contacts_sn',
+    `name` varchar(255) NOT NULL default '' COMMENT '姓名',
+    `tel` varchar(255) NOT NULL COMMENT '電話',
+    `email` varchar(255) NOT NULL COMMENT '信箱',
+    `content` text NULL COMMENT '內容',
+    `date` int(10) unsigned NOT NULL default 0 COMMENT '建立日期',
+    PRIMARY KEY  (`sn`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='聯絡我們資料表';
