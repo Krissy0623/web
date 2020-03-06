@@ -35,7 +35,7 @@ switch ($op){
 
   case "op_update" :
     $msg = op_insert($kind,$sn);
-    redirect_header("kind.php", $msg, 3000);
+    redirect_header("kind.php?kind={$kind}", $msg, 3000);
     exit;
 
   case "op_form" :
