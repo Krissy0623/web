@@ -18,10 +18,17 @@
                   <a class="nav-link js-scroll-trigger" href="<{$mainMenu.url}>" <{if $mainMenu.target == 1}>target="_blank" <{/if}>><{$mainMenu.title}></a>
                 </li>
               <{/foreach}>
+
+              <{* 購物車圖示 *}>  
+              <{if $smarty.session.cartAmount and $op != "order_form"}>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="cart.php?op=order_form">
+                    <i class="fas fa-cart-plus"></i> 
+                  </a>
+                </li>
+              <{/if}>
+
               <!-- <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.php#services"><{$a1}></a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="index.php#portfolio"><{$a2}></a>
               </li>
               <li class="nav-item">

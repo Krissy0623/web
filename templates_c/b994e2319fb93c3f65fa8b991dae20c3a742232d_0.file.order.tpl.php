@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-06 17:05:18
+/* Smarty version 3.1.34-dev-7, created on 2020-03-09 14:02:59
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\order.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e62124edd8b80_79881534',
+  'unifunc' => 'content_5e65dc130f5319_94410216',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b994e2319fb93c3f65fa8b991dae20c3a742232d' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\order.tpl',
-      1 => 1583485502,
+      1 => 1583733751,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e62124edd8b80_79881534 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e65dc130f5319_94410216 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['op']->value == "op_list") {?>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -53,7 +53,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
                     <td class="text-center">
                         <a href="cart.php?op=order_form&sn=<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 "><i class="far fa-edit"></i></a>
-                        <a href="javascript:void(0)" onclick="op_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
+                        <a href="javascript:void(0)" onclick="order_delete(<?php echo $_smarty_tpl->tpl_vars['row']->value['sn'];?>
 );"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
@@ -82,7 +82,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
 >
-        function op_delete(sn){
+        function order_delete(sn){
             Swal.fire({
                 title: '你確定嗎？',
                 text: "您將無法還原！",
@@ -94,7 +94,7 @@ class/sweetalert2/sweetalert2.min.js"><?php echo '</script'; ?>
                 cancelButtonText: '取消'
                 }).then((result) => {
                 if (result.value) {
-                    document.location.href="prod.php?op=op_delete&sn="+sn;
+                    document.location.href="order.php?op=order_delete&sn="+sn;
                 }
             })
         }
