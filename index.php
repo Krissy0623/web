@@ -14,6 +14,10 @@ switch ($op){
       redirect_header("index.php", $msg , 5000);
       exit;
 
+    case "checkUname" :
+      echo json_encode(checkUname());
+      exit;
+    
     case "reg" :
       $msg = reg();
       redirect_header("index.php", '註冊成功', 3000);
@@ -76,6 +80,39 @@ $smarty->assign("a4", "聯絡我們");
 $smarty->display('theme.tpl');
 
 // ----函式區-------
+/*##########################
+  AJAX 檢查帳號是否重覆
+  驗證不過 => false ， 驗證通過 => true
+##########################*/
+function checkUname() {
+  global $db;
+  $uname = system_CleanVars($_REQUEST, 'uname', '', 'string');
+
+  if(check_uname($uname)){
+    return false;//帳號有人使用，驗證不過
+  }
+  return true;
+} 
+
+/*=======================
+  檢查帳號是否有人使用
+  有人使用 傳回 true
+  無人使用 傳回 false
+=======================*/
+function check_uname($uname){
+  global $db;
+  $sql="SELECT count(*) as count
+        FROM `users`
+        WHERE `uname`='{$uname}'
+  ";    
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $row = $result->fetch_assoc();
+
+  if($row['count'])return true;
+  return false;  
+}
+
+
 function op_list(){
   global $db,$smarty;
   
@@ -213,6 +250,9 @@ function logout(){
   // print_r($_SESSION);die(); 
   }
 
+/*=================
+註冊函式(寫入資料庫)
+=================*/
 function reg() {
   global $db; /*要使用請global才可以使用*/
   #過濾變數 /*外來的變數一定要先過濾！！有打過濾變數,如果輸入資料有特殊字元「單引號」也可以註冊*/
@@ -222,12 +262,19 @@ function reg() {
   $_POST['name'] = db_filter($_POST['name'], '姓名');
   $_POST['tel'] = db_filter($_POST['tel'], '電話');
   $_POST['email'] = db_filter($_POST['email'], 'email',FILTER_SANITIZE_EMAIL);
+  
   #加密處理
   if($_POST['pass'] != $_POST['chk_pass']){
     redirect_header("index.php?op=reg_form","密碼不一致");
     exit;
   }
   
+  #檢查帳號是否重覆
+  if(check_uname($_POST['uname'])){
+    redirect_header("index.php?op=reg_form","帳號已有人使用");
+    exit;
+  }
+
   $_POST['pass']  = password_hash($_POST['pass'], PASSWORD_DEFAULT);
   $_POST['token']  = password_hash($_POST['uname'], PASSWORD_DEFAULT);
 

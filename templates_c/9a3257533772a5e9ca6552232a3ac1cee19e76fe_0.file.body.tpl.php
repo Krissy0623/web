@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-09 17:24:13
+/* Smarty version 3.1.34-dev-7, created on 2020-03-09 17:25:50
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e660b3d4d8702_01005586',
+  'unifunc' => 'content_5e660b9e1f12e0_49931884',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9a3257533772a5e9ca6552232a3ac1cee19e76fe' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\body.tpl',
-      1 => 1583745848,
+      1 => 1583745886,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e660b3d4d8702_01005586 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e660b9e1f12e0_49931884 (Smarty_Internal_Template $_smarty_tpl) {
 ?>    <?php if ($_smarty_tpl->tpl_vars['mainSlides']->value[0]['pic']) {?>
   <!-- 輪播圖 -->
   <style>

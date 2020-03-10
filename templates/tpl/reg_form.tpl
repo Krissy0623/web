@@ -64,18 +64,25 @@
 	</style>
 	<!--調用函式-->
 	<script>
-		//`uname`, `pass`, `name`, `tel`, `email`
-		// $(function(){
-
-		// });
 		$(function(){
 			$("#myForm").validate({
 				submitHandler: function(form) {
 					form.submit(); //form的物件 驗證後送出
 				},
 				rules: { //rules是屬性
-					'uname' : { //uname是物件 
-						required: true
+					'uname': {
+						required: true,//必填
+						remote: {
+							url: "index.php",
+							type: "post",               //方法
+							dataType: "json",           //接受数据格式
+							data: {                     //資料
+								"op" : "checkUname",
+								"uname" : function() {
+								return $("#uname").val();
+								}
+							}
+						}
 					},
 					'pass' : {
 						required: true
@@ -96,7 +103,8 @@
 				},
 				messages: {
 					'uname' : {
-						required: "必填"
+						required: "必填",
+						remote: "這個帳號已有人使用"
 					},
 					'pass' : {
 						required: "必填"
