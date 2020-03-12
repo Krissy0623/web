@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-09 17:25:50
+/* Smarty version 3.1.34-dev-7, created on 2020-03-12 10:10:04
   from 'D:\PHP\xampp\htdocs\web\templates\tpl\body.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e660b9e1f12e0_49931884',
+  'unifunc' => 'content_5e6999fc91fde1_64345727',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9a3257533772a5e9ca6552232a3ac1cee19e76fe' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\tpl\\body.tpl',
-      1 => 1583745886,
+      1 => 1583978994,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e660b9e1f12e0_49931884 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e6999fc91fde1_64345727 (Smarty_Internal_Template $_smarty_tpl) {
 ?>    <?php if ($_smarty_tpl->tpl_vars['mainSlides']->value[0]['pic']) {?>
   <!-- 輪播圖 -->
   <style>
@@ -98,37 +98,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <!-- Services Section -->
       <section class="page-section" id="services">
         <div class="container">
-          <h2 class="text-center mt-0">At Your Service</h2>
+          <h2 class="text-center mt-0">最新消息</h2>
           <hr class="divider my-4">
           <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-              <div class="mt-5">
-                <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-                <h3 class="h4 mb-2">Sturdy Themes</h3>
-                <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['news']->value, 'row');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+?>
+              <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+                  <i class="fas fa-4x fa-gem text-primary mb-4"></i>
+                  <h3 class="h4 mb-2"><?php echo $_smarty_tpl->tpl_vars['row']->value['kinds_title'];?>
+</h3>
+                  <p class="text-muted mb-0"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</p>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-              <div class="mt-5">
-                <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-                <h3 class="h4 mb-2">Up to Date</h3>
-                <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-              <div class="mt-5">
-                <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-                <h3 class="h4 mb-2">Ready to Publish</h3>
-                <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-              <div class="mt-5">
-                <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-                <h3 class="h4 mb-2">Made with Love</h3>
-                <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-              </div>
-            </div>
+            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           </div>
         </div>
       </section>

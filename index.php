@@ -135,6 +135,7 @@ function op_list(){
   }
   $smarty->assign("prods",$rows);  
 
+  news_list();
 }
 
 function contact_insert(){
@@ -287,4 +288,38 @@ function reg() {
 
   // print_r($uid);/*看有沒有串接*/
   // die();
+}
+
+function news_list(){
+  global $smarty,$db;
+  
+  $sql = "SELECT a.*,b.title as kinds_title
+          FROM `news` as a
+          LEFT JOIN `kinds` as b on a.kind_sn=b.sn
+          WHERE a.`enable`='1'
+          ORDER BY a.`date` desc
+          LIMIT 4
+  ";//die($sql);
+
+  // #---分頁套件(原始$sql 不要設 limit)
+  // include_once _WEB_PATH."/class/PageBar/PageBar.php";
+  // $pageCount = 10;
+  // $PageBar = getPageBar($db, $sql, $pageCount, 10);
+  // $sql     = $PageBar['sql'];
+  // $total   = $PageBar['total'];
+  // $bar     = ($total > $pageCount) ? $PageBar['bar'] : "";
+  // $smarty->assign("bar",$bar);  
+  // #---分頁套件(end)
+
+  $result = $db->query($sql) or die($db->error() . $sql);
+  $rows=[];//array();
+  while($row = $result->fetch_assoc()){    
+    $row['sn'] = (int)$row['sn'];//分類
+    $row['title'] = htmlspecialchars($row['title']);//標題
+    $row['prod'] = getFilesByKindColsnSort("news",$row['sn']);  
+    $row['kinds_title'] = htmlspecialchars($row['kinds_title']);//標題
+    $rows[] = $row;
+  }
+  $smarty->assign("news",$rows);  
+
 }
