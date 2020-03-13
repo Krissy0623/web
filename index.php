@@ -14,7 +14,7 @@ switch ($op){
       redirect_header("index.php", $msg , 5000);
       exit;
 
-    case "checkUname" :
+    case "checkUname" : //不要讓帳號重複
       echo json_encode(checkUname());
       exit;
     
@@ -60,13 +60,12 @@ switch ($op){
         op_list();
 
         #取得商品資料(含圖;最多六個) 
-
         break;  
   }
    
   /*---- 將變數送至樣版----*/
   $mainMenus = getMenus("mainMenu");
-  $smarty->assign("mainMenus", $mainMenus,true);
+  $smarty->assign("mainMenus", $mainMenus);
   $smarty->assign("WEB", $WEB);
   $smarty->assign("op", $op); //送去樣板就會顯示,但要下指令<{$op}>
    
@@ -134,7 +133,7 @@ function op_list(){
     $rows[] = $row;
   }
   $smarty->assign("prods",$rows);  
-
+  
   news_list();
 }
 

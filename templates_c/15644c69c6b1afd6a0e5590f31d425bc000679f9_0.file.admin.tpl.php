@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-12 10:10:25
+/* Smarty version 3.1.34-dev-7, created on 2020-03-13 10:47:28
   from 'D:\PHP\xampp\htdocs\web\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e699a1183ebd7_76381008',
+  'unifunc' => 'content_5e6af440800ea5_90961505',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '15644c69c6b1afd6a0e5590f31d425bc000679f9' => 
     array (
       0 => 'D:\\PHP\\xampp\\htdocs\\web\\templates\\admin.tpl',
-      1 => 1583977920,
+      1 => 1584065418,
       2 => 'file',
     ),
   ),
@@ -23,13 +23,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:tpl/prod.tpl' => 1,
     'file:tpl/kind.tpl' => 1,
     'file:tpl/menu.tpl' => 1,
+    'file:tpl/menu1.tpl' => 1,
     'file:tpl/slide.tpl' => 1,
     'file:tpl/contact.tpl' => 1,
     'file:tpl/order.tpl' => 1,
     'file:tpl/news.tpl' => 1,
   ),
 ),false)) {
-function content_5e699a1183ebd7_76381008 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e6af440800ea5_90961505 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -84,7 +85,10 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
 ?>
                 <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "menu.php") {?>  
                     <?php $_smarty_tpl->_subTemplateRender("file:tpl/menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
+?>  
+                <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "menu1.php") {?>
+                    <?php $_smarty_tpl->_subTemplateRender("file:tpl/menu1.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>  
                 <?php } elseif ($_smarty_tpl->tpl_vars['WEB']->value['file_name'] == "slide.php") {?>  
                     <?php $_smarty_tpl->_subTemplateRender("file:tpl/slide.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
@@ -126,6 +130,9 @@ bootstrap/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU
                         </a>
                         <a href="menu.php" class="list-group-item">
                             <li style="list-style-type: none">選單管理</li>
+                        </a>
+                        <a href="menu1.php" class="list-group-item">
+                            <li style="list-style-type: none">多層選單管理</li>
                         </a>
                         <a href="slide.php" class="list-group-item">
                             <li style="list-style-type: none">輪播圖管理</li>
